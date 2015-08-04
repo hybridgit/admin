@@ -1,8 +1,17 @@
+.mdl-card.demo-card-wide {
+  width: auto;
+  flex: 1;
+}
 .demo-card-wide > .mdl-card__title {
-    color: #fff;
-    height: 176px;
-    background-color: #00b9d8;
-  }
-  .demo-card-wide > .mdl-card__menu {
-    color: #fff;
-  }
+  color: #fff;
+  height: 176px;
+  background-color: #00b9d8;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+
+.demo-card-wide > .mdl-card__menu > .material-icons{
+  color: rgba(255,255,255,0.8);
+  font-size: 3em;
+}

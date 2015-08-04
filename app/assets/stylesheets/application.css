@@ -173,7 +173,7 @@ _:-ms-input-placeholder, :root .demo-graph {
   color: #00b9d8;
 }
 .demo-graph:nth-child(2) {
-  color: #d9006e;
+  color: #00b9d8; //#d9006e;
 }
 
 .demo-cards {
