@@ -26,6 +26,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # material design lite for UI
 gem 'material-design-rails'
 
+# MySQL library
+gem 'mysql2', '~> 0.3.19'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
