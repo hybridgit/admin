@@ -8,31 +8,31 @@
         <div class="mdl-card__supporting-text">
           <div>
             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="total-phone-numbers">
-              <input type="radio" id="total-phone-numbers" class="mdl-radio__button" name="report_options" value="Total Phone Numbers" data-url="reports/total_phone_numbers" checked />
+              <input type="radio" id="total-phone-numbers" class="mdl-radio__button" name="report_options" value="Total Phone Numbers" data-url="/reports/total_phone_numbers" checked />
               <span class="mdl-radio__label">Total Phone Numbers</span>
             </label>
           </div>
           <div>
             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="total-sms-sent">
-              <input type="radio" id="total-sms-sent" class="mdl-radio__button" name="report_options" value="Total SMS Sent" data-url="reports/total_sms_sent"/>
+              <input type="radio" id="total-sms-sent" class="mdl-radio__button" name="report_options" value="Total SMS Sent" data-url="/reports/total_sms_sent"/>
               <span class="mdl-radio__label">Total SMS Sent</span>
             </label>
           </div>
           <div>
             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="average-sms-per-person">
-              <input type="radio" id="average-sms-per-person" class="mdl-radio__button" name="report_options" value="Average SMS per Person" data-url="reports/average_sms_per_person"/>
+              <input type="radio" id="average-sms-per-person" class="mdl-radio__button" name="report_options" value="Average SMS per Person" data-url="/reports/average_sms_per_person"/>
               <span class="mdl-radio__label">Average SMS/Person</span>
             </label>
           </div>
           <div>
             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="successful-connections">
-              <input type="radio" id="successful-connections" class="mdl-radio__button" name="report_options" value="Successful Connections" data-url="reports/successful_connections"/>
+              <input type="radio" id="successful-connections" class="mdl-radio__button" name="report_options" value="Successful Connections" data-url="/reports/successful_connections"/>
               <span class="mdl-radio__label">Successful Connections</span>
             </label>
           </div>
           <div>
             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="connected-customers">
-              <input type="radio" id="connected-customers" class="mdl-radio__button" name="report_options" value="Connected Customers" data-url="reports/connected_customers"/>
+              <input type="radio" id="connected-customers" class="mdl-radio__button" name="report_options" value="Connected Customers" data-url="/reports/connected_customers"/>
               <span class="mdl-radio__label">Connected Customers</span>
             </label>
           </div>
@@ -42,22 +42,23 @@
         </div>
       </div>
     </div>
-    <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
-      <div class="">
+    <div id="general-usage-graph" class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
+      <h4 id="graph-title">General Usage Statistics</h4>
+      <div id="date-filter">
         <form class="mdl-grid" method="get">
           <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--6-col-phone mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-            <input type="text" class="mdl-textfield__input" name="start_date" id="start-date"/>
+            <input type="text" class="mdl-textfield__input" name="start_date" id="start-date" value="2015-06-10"/>
             <label class="mdl-textfield__label" for="start-date">Start Date</label>
           </div>
           <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--6-col-phone mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-            <input type="text" class="mdl-textfield__input" name="end_date" id="end-date"/>
+            <input type="text" class="mdl-textfield__input" name="end_date" id="end-date" value="2015-07-30"/>
             <label class="mdl-textfield__label" for="end-date">End Date</label>
           </div>
         </form>
       </div>
-      <svg fill="currentColor" viewBox="0 0 500 250" class="demo-graph">
-        <use xlink:href="#chart"/>
-      </svg>
+      <div id="current-usage-graph">
+
+      </div>
     </div>
   </div>
 </main>
