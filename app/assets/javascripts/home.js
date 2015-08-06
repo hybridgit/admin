@@ -1,5 +1,11 @@
 $(document).ready(function(){
+  // Set the start date to first day of the week
+  $("#start-date").val(moment().startOf('week').format("YYYY-MM-DD"));
+  // Set the end date to today
+  $("#end-date").val(moment().format("YYYY-MM-DD"));
+
   initializeGraph();
+
   $(".mdl-card__supporting-text input").change(function(){
     initializeGraph();
   });
