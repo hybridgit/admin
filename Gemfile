@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # material design lite for UI
-gem 'material-design-rails'
+gem 'materialize-sass', '~> 0.97.0'
 
 # MySQL library
 gem 'mysql2', '~> 0.3.19'

@@ -1,63 +1,41 @@
-<main class="mdl-layout__content mdl-color--grey-100">
-  <div class="mdl-grid demo-content">
-    <div class="mdl-cell mdl-cell--4-col">
-      <div class="mdl-card mdl-shadow--2dp demo-card-wide">
-        <div class="mdl-card__title">
-          <h2 class="mdl-card__title-text">General Usage</h2>
-        </div>
-        <div class="mdl-card__supporting-text">
-          <div>
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="total-phone-numbers">
-              <input type="radio" id="total-phone-numbers" class="mdl-radio__button" name="report_options" value="Total Phone Numbers" data-url="/reports/total_phone_numbers" checked />
-              <span class="mdl-radio__label">Total Phone Numbers</span>
-            </label>
-          </div>
-          <div>
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="total-sms-sent">
-              <input type="radio" id="total-sms-sent" class="mdl-radio__button" name="report_options" value="Total SMS Sent" data-url="/reports/total_sms_sent"/>
-              <span class="mdl-radio__label">Total SMS Sent</span>
-            </label>
-          </div>
-          <div>
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="average-sms-per-person">
-              <input type="radio" id="average-sms-per-person" class="mdl-radio__button" name="report_options" value="Average SMS per Person" data-url="/reports/average_sms_per_person"/>
-              <span class="mdl-radio__label">Average SMS/Person</span>
-            </label>
-          </div>
-          <div>
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="successful-connections">
-              <input type="radio" id="successful-connections" class="mdl-radio__button" name="report_options" value="Successful Connections" data-url="/reports/successful_connections"/>
-              <span class="mdl-radio__label">Successful Connections</span>
-            </label>
-          </div>
-          <div>
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="connected-customers">
-              <input type="radio" id="connected-customers" class="mdl-radio__button" name="report_options" value="Connected Customers" data-url="/reports/connected_customers"/>
-              <span class="mdl-radio__label">Connected Customers</span>
-            </label>
-          </div>
-        </div>
-        <div class="mdl-card__menu">
-          <i class="material-icons">assessment</i>
-        </div>
-      </div>
-    </div>
-    <div id="general-usage-graph" class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
+<main>
+  <div class="container">
+    <div id="general-usage-graph" class="">
       <h4 id="graph-title">General Usage Statistics</h4>
-      <div id="date-filter">
-        <form class="mdl-grid" method="get">
-          <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--6-col-phone mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-            <input type="text" class="mdl-textfield__input" name="start_date" id="start-date"/>
-            <label class="mdl-textfield__label" for="start-date">Start Date</label>
+      <form>
+        <div class="row">
+          <div class="col s12">
+            <div class="input-field">
+              <select id="report-type">
+                <option value="/reports/total_phone_numbers" selected>Total Phone Numbers</option>
+                <option value="/reports/total_sms_sent">Total SMS Sent</option>
+                <option value="/reports/successful_connections">Successful Connections</option>
+              </select>
+              <label>Select Report</label>
+            </div>
           </div>
-          <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--6-col-phone mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-            <input type="text" class="mdl-textfield__input" name="end_date" id="end-date"/>
-            <label class="mdl-textfield__label" for="end-date">End Date</label>
+        </div>
+        <div class="row">
+          <div class="col s6">
+            <label for="start-date">Start Date</label>
+            <input type="date" class="datepicker" name="start_date" id="start-date"/>
           </div>
-        </form>
-      </div>
-      <div id="current-usage-graph">
-
+          <div class="col s6">
+            <label for="end-date">End Date</label>
+            <input type="date" class="datepicker" name="end_date" id="end-date"/>
+          </div>
+        </div>
+      </form>
+      <div id="current-usage-graph"></div>
+      <div id="general-stats" class="row">
+        <div class="col s6">
+          <p><i class="material-icons circle stat" role="presentation">phone</i> <strong>Total Phone Numbers:</strong> <span id="total-phone-numbers-count"></span></p>
+          <p><i class="material-icons circle stat" role="presentation">message</i> <strong>Total SMS Sent:</strong> <span id="total-sms-sent-count"></span></p>
+        </div>
+        <div class="col s6">
+          <p><i class="material-icons circle stat" role="presentation">person</i> <strong>Average SMS/Person:</strong> <span id="average-sms-per-person"></span></p>
+          <p><i class="material-icons circle stat" role="presentation">sync</i> <strong>Successful Connections:</strong> <span id="successful-connections-count"></span></p>
+        </div>
       </div>
     </div>
   </div>
