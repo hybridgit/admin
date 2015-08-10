@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  get 'home/index'
+  root 'riders#stats'
 
-  get 'reports/total_phone_numbers'
-  get 'reports/total_sms_sent'
-  get 'reports/average_sms_per_person'
-  get 'reports/successful_connections'
-  get 'reports/connected_customers'
+  get 'riders/stats'
+  get 'riders/total_phone_numbers'
+  get 'riders/total_sms_sent'
+  get 'riders/average_sms_per_person'
+  get 'riders/successful_connections'
+  get 'riders/connected_customers'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

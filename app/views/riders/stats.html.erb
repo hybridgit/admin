@@ -1,0 +1,43 @@
+<main>
+  <div class="container">
+    <div id="general-usage-graph" class="">
+      <h4 id="graph-title">General Usage Statistics</h4>
+      <form>
+        <div class="row">
+          <div class="col s12">
+            <div class="input-field">
+              <select id="report-type">
+                <%= controller.controller_name %>
+                <option value=<%= "/#{controller.controller_name}/total_phone_numbers" %> selected>Total Phone Numbers</option>
+                <option value=<%= "/#{controller.controller_name}/total_sms_sent" %> >Total SMS Sent</option>
+                <option value=<%= "/#{controller.controller_name}/successful_connections" %> >Successful Connections</option>
+              </select>
+              <label>Select Report</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6">
+            <label for="start-date">Start Date</label>
+            <input type="date" class="datepicker" name="start_date" id="start-date"/>
+          </div>
+          <div class="col s6">
+            <label for="end-date">End Date</label>
+            <input type="date" class="datepicker" name="end_date" id="end-date"/>
+          </div>
+        </div>
+      </form>
+      <div id="current-usage-graph"></div>
+      <div id="general-stats" class="row">
+        <div class="col s6">
+          <p><i class="material-icons circle stat" role="presentation">phone</i> <strong>Total Phone Numbers:</strong> <span id="total-phone-numbers-count"></span></p>
+          <p><i class="material-icons circle stat" role="presentation">message</i> <strong>Total SMS Sent:</strong> <span id="total-sms-sent-count"></span></p>
+        </div>
+        <div class="col s6">
+          <p><i class="material-icons circle stat" role="presentation">person</i> <strong>Average SMS/Person:</strong> <span id="average-sms-per-person"></span></p>
+          <p><i class="material-icons circle stat" role="presentation">sync</i> <strong>Successful Connections:</strong> <span id="successful-connections-count"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

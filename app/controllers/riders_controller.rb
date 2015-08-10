@@ -1,4 +1,7 @@
-class ReportsController < ApplicationController
+class RidersController < ApplicationController
+  def stats
+  end
+
   def total_phone_numbers
     @total_phone_numbers_count = CabRequest.total_phone_numbers_count(params[:start_date], params[:end_date])
     @total_sms_sent_count = CabRequest.total_sms_sent_count(params[:start_date], params[:end_date])
@@ -41,8 +44,5 @@ class ReportsController < ApplicationController
   end
 
   def successful_connections
-  end
-
-  def connected_customers
   end
 end
