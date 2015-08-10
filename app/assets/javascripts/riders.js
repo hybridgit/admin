@@ -1,4 +1,4 @@
-$(document).on('ready page:load', function(event){
+$(document).ready(function(event){
   // Initialize Sidebar
   $(".button-collapse").sideNav();
   // Initialize Selects
