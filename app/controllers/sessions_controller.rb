@@ -2,6 +2,9 @@ class SessionsController < ApplicationController
   layout "login.html"
 
   def new
+    if signed_in?
+      redirect_back_or current_user
+    end
   end
 
   def create
