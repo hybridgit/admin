@@ -29,6 +29,9 @@ gem 'materialize-sass', '~> 0.97.0'
 # MySQL library
 gem 'mysql2', '~> 0.3.19'
 
+# For the attr_accessible method in models
+gem 'protected_attributes'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

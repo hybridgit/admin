@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804084947) do
+ActiveRecord::Schema.define(version: 20150811115317) do
 
   create_table "cab_requests", force: :cascade do |t|
     t.string   "location",        limit: 255
@@ -57,6 +57,43 @@ ActiveRecord::Schema.define(version: 20150804084947) do
     t.float    "longitude",     limit: 24
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "permissions", force: :cascade do |t|
+    t.string   "controller", limit: 255
+    t.string   "action",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "role_permissions", force: :cascade do |t|
+    t.integer  "role_id",       limit: 4
+    t.integer  "permission_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "user_roles", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "role_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username",           limit: 255
+    t.string   "email",              limit: 255
+    t.string   "encrypted_password", limit: 255
+    t.string   "salt",               limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_foreign_key "cab_requests", "driver_lists"

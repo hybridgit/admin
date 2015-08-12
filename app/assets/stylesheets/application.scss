@@ -20,3 +20,7 @@ $primary-color: color("yellow", "darken-2") !default;
 html, body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
+
+nav a.brand-logo{
+  font-weight: 300;
+}

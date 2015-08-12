@@ -1,0 +1,27 @@
+<main class="full">
+  <div class="container">
+    <div class="row">
+      <div class="col s6 offset-s3 l4 offset-l4">
+        <div class="card z-depth-2">
+          <h3 class="card-title yellow darken-2 black-text">Login</h3>
+          <%= form_for(:session, :url => {action: "create"}, :html => {:class => "stand_alone"}) do |f| %>
+          <div class="card-content">
+            <%= render :partial => 'layouts/alert' unless alert.nil? %>
+            <div class="input-field">
+              <%= f.label :username, {:class => "black-text"} %>
+              <%= f.text_field :username, :class => "text_field" %>
+            </div>
+            <div class="input-field">
+              <%= f.label :password, {:class => "black-text"} %>
+              <%= f.password_field :password, :class => "text_field" %>
+            </div>
+          </div>
+          <div class="card-action">
+            <%= link_to "Login", "", {:class => "btn blue-grey darken-3 waves-effect waves-light"} %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
