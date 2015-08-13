@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :user_roles, :dependent => :destroy
   has_many :roles, :through => :user_roles, :dependent => :restrict_with_error
-  has_many :activity_logs, :dependent => :destroy
+  #has_many :activity_logs, :dependent => :destroy
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

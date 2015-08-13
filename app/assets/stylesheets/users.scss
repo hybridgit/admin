@@ -1,3 +1,24 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "materialize/components/color";
+$link-color: color("teal", "base");
+
+table {
+  font-size: 1.1em;
+  a{
+    color: $link-color;
+  }
+  td.actions {
+    a {
+      i {
+        background-color: #000;
+        color: #fff;
+        padding: 3px;
+      }
+    }
+  }
+}
+
+a.action-button{
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+}

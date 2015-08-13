@@ -1,0 +1,10 @@
+<% @users.each do |user| %>
+  <tr >
+    <td><%= link_to user.username, user %></td>
+    <td><%= link_to user.email, user %></td>
+    <td class="actions">
+      <%= link_to raw("<i class='material-icons circle'>mode_edit</i>"), edit_user_path(user), remote: true %>
+      <%= link_to raw("<i class='material-icons circle'>cancel</i>"), user_delete_path(user), remote: true %>
+    </td>
+  </tr>
+<% end %>

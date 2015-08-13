@@ -4,77 +4,58 @@ class UsersController < ApplicationController
     c.send(:authorize, self.controller_name, self.action_name)
   end
 
+  respond_to :html, :js
+
   # GET /users
-  # GET /users.xml
+  # GET /users.js
   def index
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => UsersDatatable.new(view_context) }
-    end
+    @users = User.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
   end
 
   # GET /users/1
-  # GET /users/1.xml
+  # GET /users/1.js
   def show
     @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml { render :xml => @user }
-    end
   end
 
   # GET /users/new
-  # GET /users/new.xml
+  # GET /users/new.js
   def new
     @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml { render :xml => @user }
-    end
   end
 
   # GET /users/1/edit
+  # GET /users/1/edit.js
   def edit
     @user = User.find(params[:id])
   end
 
   # POST /users
-  # POST /users.xml
+  # POST /users.js
   def create
-    @user = User.new(params[:user])
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to(@user, :notice => 'User was successfully created.') }
-        format.xml { render :xml => @user, :status => :created, :location => @user }
-      else
-        format.html { render :action => "new" }
-        format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
+    @users = User.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+    @user = User.create(params[:user])
+    @user.save
   end
 
   # PUT /users/1
-  # PUT /users/1.xml
+  # PUT /users/1.js
   def update
     @user = User.find(params[:id])
+    @user.update_attributes(params[:user])
+    @users = User.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+  end
 
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
-        format.xml { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
+  # GET /user/1/delete
+  # GET /user/1/delete.js
+  def delete
+    @user = User.find(params[:user_id])
   end
 
   # DELETE /users/1
-  # DELETE /users/1.xml
+  # DELETE /users/1.js
   def destroy
+    @users = User.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
     @user = User.find(params[:id])
     @error = nil
 
@@ -83,9 +64,6 @@ class UsersController < ApplicationController
     rescue ActiveRecord::DeleteRestrictionError => e
       @error = e.message
     end
-
-    respond_to do |format|
-      format.html { @error.nil? ? redirect_to(users_url) : redirect_to(@user, :notice => @error) }
-    end
   end
+
 end

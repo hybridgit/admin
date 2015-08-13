@@ -32,6 +32,12 @@ gem 'mysql2', '~> 0.3.19'
 # For the attr_accessible method in models
 gem 'protected_attributes'
 
+# Paginate a list of models
+gem 'will_paginate', '~> 3.0.7'
+
+# For handling response on a controller level
+gem 'responders', '~> 2.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

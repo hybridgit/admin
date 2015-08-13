@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   resources :user_roles
   resources :permissions
   resources :roles
-  resources :users
+  resources :users do
+    get "delete"
+  end
 
   get '/login',  :to => 'sessions#new'
   get '/logout', :to => 'sessions#destroy'

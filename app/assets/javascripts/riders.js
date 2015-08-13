@@ -50,24 +50,27 @@ initializeGraph = function(){
   // Set the Title of Graph
   //$("#graph-title").html(selectedReport.val());
 
-  // Get data about the selected option
-  $.ajax({
-    url: selectedReport.val(),
-    data: {
-      start_date: startDate.val(),
-      end_date: endDate.val()
-    },
-    success: function(response){
-      if(response.data.length > 0){
-        drawGraph(response.data);
-      }
-      $("#total-phone-numbers-count").html(response.total_phone_numbers_count);
-      $("#total-sms-sent-count").html(response.total_sms_sent_count);
-      $("#average-sms-per-person").html(response.average_sms_per_person);
-      $("#successful-connections-count").html(response.successful_connections_count);
-    },
-    dataType: 'json'
-  });
+  if(selectedReport.length){
+    // Get data about the selected option
+    $.ajax({
+      url: selectedReport.val(),
+      data: {
+        start_date: startDate.val(),
+        end_date: endDate.val()
+      },
+      success: function(response){
+        if(response.data.length > 0){
+          drawGraph(response.data);
+        }
+        $("#total-phone-numbers-count").html(response.total_phone_numbers_count);
+        $("#total-sms-sent-count").html(response.total_sms_sent_count);
+        $("#average-sms-per-person").html(response.average_sms_per_person);
+        $("#successful-connections-count").html(response.successful_connections_count);
+      },
+      dataType: 'json'
+    });
+  }
+
 };
 
 drawGraph = function(data){
