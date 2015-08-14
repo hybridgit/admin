@@ -35,7 +35,6 @@ class UsersController < ApplicationController
   def create
     @users = User.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
     @user = User.create(params[:user])
-    @user.save
   end
 
   # PUT /users/1

@@ -1,18 +1,17 @@
 class PermissionsController < ApplicationController
+  include PermissionsHelper
+
   before_filter :authenticate
   before_filter do |c|
     c.send(:authorize, self.controller_name, self.action_name)
   end
 
+  respond_to :html, :js
+
   # GET /permissions
   # GET /permissions.xml
   def index
-    @permissions = Permission.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => PermissionsDatatable.new(view_context) }
-    end
+    @controllers = Permission.controllers
   end
 
   # GET /permissions/1

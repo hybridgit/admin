@@ -8,10 +8,7 @@ namespace :security do
     @admin = User.create username: "admin", email: "admin@ride.com.et", password: "P@ssw0rd!", password_confirmation: "P@ssw0rd!"
     puts "Admin User created"
     # Assign Admin Role to username
-    @admin.user_roles.build(@admin_role.id)
+    @admin = UserRole.create user_id: @admin.id, role_id: @admin_role.id
     puts "Admin assigned Role"
-    # Save changes made to the User
-    @admin.save
-    puts "Changes saved!"
   end
 end

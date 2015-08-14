@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   resources :role_permissions
   resources :user_roles
   resources :permissions
-  resources :roles
+  resources :roles do
+    get "delete"
+  end
   resources :users do
     get "delete"
   end
