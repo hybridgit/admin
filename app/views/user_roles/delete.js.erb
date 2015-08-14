@@ -1,0 +1,7 @@
+$("#user-role-modal").html("<%= escape_javascript(render 'delete') %>")
+$("#user-role-modal").openModal()
+$('.input-field select').material_select({
+  ready: function(){
+    $('.input-field select').material_select()
+  }
+})

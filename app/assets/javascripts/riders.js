@@ -2,7 +2,7 @@ $(document).ready(function(event){
   // Initialize Sidebar
   $(".button-collapse").sideNav();
   // Initialize Selects
-  $('select').material_select();
+  $('.input-field select').material_select();
 
   // Set the start date to first day of the week
   $("#start-date").data("value", moment().startOf('week').format("YYYY-MM-DD"));

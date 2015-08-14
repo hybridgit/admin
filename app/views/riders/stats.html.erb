@@ -7,7 +7,6 @@
           <div class="col s12">
             <div class="input-field">
               <select id="report-type">
-                <%= controller.controller_name %>
                 <option value=<%= "/#{controller.controller_name}/total_phone_numbers" %> selected>Total Phone Numbers</option>
                 <option value=<%= "/#{controller.controller_name}/total_sms_sent" %> >Total SMS Sent</option>
                 <option value=<%= "/#{controller.controller_name}/successful_connections" %> >Successful Connections</option>

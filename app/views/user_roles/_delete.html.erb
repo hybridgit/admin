@@ -1,0 +1,9 @@
+<h3 class="modal-header">Delete User's Role</h3>
+<div class="modal-content">
+  <ul class="errors"></ul>
+  <p>Are you sure you wish to delete <strong><%= @user_role.role.name %></strong>?</p>
+</div>
+<div class="modal-footer">
+  <%= link_to "Confirm Delete", user_role_path(@user, @user_role), method: :delete, remote: true, class: "btn blue-grey darken-3 waves-effect waves-light" %>
+  <%= link_to "Cancel", "#", class: "btn modal-close" %>
+</div>

@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+
+      <p id="notice"><%= notice %></p>
+
+      <h5><%= "#{@user.username}'s Roles" %></h5>
+
+      <table id="user-roles-list" class="striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%= render "/user_roles/item" %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<%= link_to raw('<i class="material-icons">add</i>'), new_user_role_path(@user), remote: true, class: "btn-floating btn-large waves-effect waves-light yellow darken-2 black-text action-button"%>
+
+<div id="user-role-modal" class="modal"></div>

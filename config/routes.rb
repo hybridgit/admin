@@ -8,15 +8,19 @@ Rails.application.routes.draw do
   get 'riders/successful_connections'
   get 'riders/connected_customers'
 
-  resources :role_permissions
-  resources :user_roles
   resources :permissions
   resources :roles do
     get "delete"
+    resources :role_permissions, :as => :permissions
   end
   resources :users do
+    resources :user_roles, :as => :roles do
+      get "delete"
+    end
     get "delete"
   end
+
+
 
   get '/login',  :to => 'sessions#new'
   get '/logout', :to => 'sessions#destroy'

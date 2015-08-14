@@ -1,0 +1,9 @@
+$("ul.errors").html("")
+<% if @user_role.errors.any? %>
+  <% @user_role.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li/>").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %>
+  $("#user-roles-list tbody").html("<%= escape_javascript(render 'item') %>")
+  $("#user-role-modal").closeModal()
+<% end %>
