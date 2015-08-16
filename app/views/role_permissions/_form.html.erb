@@ -1,25 +1,24 @@
-<%= form_for(@role_permission) do |f| %>
-  <% if @role_permission.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@role_permission.errors.count, "error") %> prohibited this role_permission from being saved:</h2>
-
-      <ul>
-      <% @role_permission.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for(@role_permission, remote: true) do |f| %>
+<div class="modal-content">
+  <ul class="errors"></ul>
+  <div class="row">
+    <div class="col s12">
+      <div class="input-field">
+        <%= f.hidden_field :role_id %>
+      </div>
+      <div class="input-field">
+        <%= f.collection_select(:controller, @available_controllers, :name, :name, {:prompt => true}) %>
+        <%= f.number_field :controller %>
+      </div>
+      <div class="input-field">
+        <%= f.collection_select(:action, @available_actions, :name, :name, {:prompt => true}) %>
+        <%= f.number_field :action %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :role_id %><br>
-    <%= f.number_field :role_id %>
   </div>
-  <div class="field">
-    <%= f.label :permission_id %><br>
-    <%= f.number_field :permission_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
+<div class="modal-footer">
+  <%= f.submit "Submit", {:class => "btn blue-grey darken-3 waves-effect waves-light"} %>
+  <%= link_to "Cancel", "#", class: "btn modal-close", data: {dismiss: "modal"} %>
+</div>
 <% end %>

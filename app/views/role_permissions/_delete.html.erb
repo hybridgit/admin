@@ -1,0 +1,9 @@
+<h3 class="modal-header">Delete the Role's Permission</h3>
+<div class="modal-content">
+  <ul class="errors"></ul>
+  <p>Are you sure you wish to delete <strong><%= @role_permission.display_field %></strong>?</p>
+</div>
+<div class="modal-footer">
+  <%= link_to "Confirm Delete", role_permission_path(@role, @role_permission), method: :delete, remote: true, class: "btn blue-grey darken-3 waves-effect waves-light" %>
+  <%= link_to "Cancel", "#", class: "btn modal-close" %>
+</div>
