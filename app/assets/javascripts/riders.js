@@ -315,8 +315,9 @@ drawMap = function(response){
     $("#google-map-stats table tbody").html("");
 
     for(var i=0; i < response.data.length; i++){
+      var percentage = (response.data[i].value/total * 100).toFixed(2) + "%";
       var marker = new google.maps.Marker({
-        title: "Location: " + response.data[i].location + " Value: " + (response.data[i].value/total * 100).toFixed(2) + "%",
+        title: "Location: " + response.data[i].location + " Value: " + percentage,
         dataLocation: response.data[i].location,
         dataValue: (response.data[i].value/total * 100).toFixed(2) + "%",
         position: {lat: response.data[i].location_lat, lng: response.data[i].location_long},
@@ -331,7 +332,7 @@ drawMap = function(response){
         map: map
       });
 
-      attachInfo(marker, "<strong>Location:</strong> " + response.data[i].location + "<br/><strong>Value:</strong> " + response.data[i].value);
+      attachInfo(marker, "<strong>Location:</strong> " + response.data[i].location + "<br/><strong>Value:</strong> " + percentage);
 
       $("#google-map-stats table tbody")
         .append("<tr><td>" + (i+1) + "</td>" +
