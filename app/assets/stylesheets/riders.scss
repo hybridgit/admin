@@ -84,3 +84,70 @@ i.stat{
 .picker{
   outline: none;
 }
+
+/******* Google Maps **********/
+header.map{
+  padding-left: 0;
+}
+
+main.map {
+  padding-left: 0;
+  div.container{
+    margin-top: 0px;
+    width: 100% !important;
+  }
+}
+
+#google-map{
+  width: 100%;
+  min-height: 350px;
+  height: 70%;
+  background-color: #bbbbbb;
+}
+
+#google-map-stats{
+  width: 90%;
+  margin: 10px auto 0 auto;
+}
+
+.stations, .stations svg {
+  position: absolute;
+}
+
+.stations svg {
+  width: 60px;
+  height: 20px;
+  padding-right: 100px;
+  font: 10px sans-serif;
+}
+
+.stations circle {
+  fill: brown;
+  stroke: black;
+  stroke-width: 1.5px;
+}
+
+#map-filter-form {
+  position: absolute;
+  top: 160px;
+  background-color: #fff;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  a#toggle-filter{
+    color: color("green", "lighten-1");
+    i{
+      display: block;
+      padding: 10px;
+      cursor: pointer;
+      margin: 0 0 0 0;
+    }
+  }
+  form {
+    display: none;
+  }
+}
+
+.map-label{
+  color: #fff;
+  text-align: center;
+}

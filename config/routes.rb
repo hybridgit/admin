@@ -4,9 +4,12 @@ Rails.application.routes.draw do
   get 'riders/stats'
   get 'riders/total_phone_numbers'
   get 'riders/total_sms_sent'
-  get 'riders/average_sms_per_person'
   get 'riders/successful_connections'
-  get 'riders/connected_customers'
+
+  get 'riders/map'
+  get 'riders/map_total_phone_numbers'
+  get 'riders/map_total_sms_sent'
+  get 'riders/map_successful_connections'
 
   resources :permissions
   resources :roles do

@@ -1,0 +1,52 @@
+<main class="<%= action_name %>">
+  <div class="container">
+    <div id="google-map">
+    </div>
+    <div id="google-map-stats">
+      <table class="striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Location</th>
+            <th>Total Phone Numbers</th>
+            <th>Total SMS Sent</th>
+            <th>Successful Connnection</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<div id="map-filter-form" class="z-depth-1">
+  <a id="toggle-filter">
+    <i class="material-icons right">chevron_right</i>
+    <i class="material-icons left hide">chevron_left</i>
+  </a>
+  <form>
+    <div class="row">
+      <div class="col s12">
+        <div class="input-field">
+          <select id="map-report-type">
+            <option value=<%= "/#{controller.controller_name}/map_total_phone_numbers" %> selected>Total Phone Numbers</option>
+            <option value=<%= "/#{controller.controller_name}/map_total_sms_sent" %> >Total SMS Sent</option>
+            <option value=<%= "/#{controller.controller_name}/map_successful_connections" %> >Successful Connections</option>
+          </select>
+          <label>Select Report</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6">
+        <label for="map-start-date">Start Date</label>
+        <input type="date" class="datepicker" name="map_start_date" id="map-start-date"/>
+      </div>
+      <div class="col s6">
+        <label for="map-end-date">End Date</label>
+        <input type="date" class="datepicker" name="map_end_date" id="map-end-date"/>
+      </div>
+    </div>
+  </form>
+</div>
