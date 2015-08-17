@@ -316,7 +316,7 @@ drawMap = function(response){
 
     for(var i=0; i < response.data.length; i++){
       var marker = new google.maps.Marker({
-        title: response.data[i].location + ";" + (response.data[i].value/total * 100).toFixed(2) + "%",
+        title: "Location: " + response.data[i].location + " Value: " + (response.data[i].value/total * 100).toFixed(2) + "%",
         dataLocation: response.data[i].location,
         dataValue: (response.data[i].value/total * 100).toFixed(2) + "%",
         position: {lat: response.data[i].location_lat, lng: response.data[i].location_long},
@@ -352,6 +352,10 @@ attachInfo  = function(marker, info) {
   });
 
   marker.addListener('click', function() {
+    infowindow.open(marker.get('map'), marker);
+  });
+
+  marker.addListener('mouseover', function() {
     infowindow.open(marker.get('map'), marker);
   });
 }
