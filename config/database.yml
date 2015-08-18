@@ -9,7 +9,7 @@ development: &default
   host: 127.0.0.1
   pool: 5
   username: root
-  password: r00t!
+  password:
 
 
 development:

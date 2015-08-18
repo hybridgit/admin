@@ -15,6 +15,13 @@
         </thead>
         <tbody>
         </tbody>
+        <tfoot>
+          <tr>
+            <td id="pagination" colspan="5">
+
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   </div>
@@ -25,16 +32,35 @@
     <i class="material-icons right">chevron_right</i>
     <i class="material-icons left hide">chevron_left</i>
   </a>
-  <form>
+  <form class="clearfix">
     <div class="row">
-      <div class="col s12">
+      <div class="col s6">
         <div class="input-field">
           <select id="map-report-type">
             <option value=<%= "/#{controller.controller_name}/map_total_phone_numbers" %> selected>Total Phone Numbers</option>
             <option value=<%= "/#{controller.controller_name}/map_total_sms_sent" %> >Total SMS Sent</option>
             <option value=<%= "/#{controller.controller_name}/map_successful_connections" %> >Successful Connections</option>
           </select>
-          <label>Select Report</label>
+          <label for="map-report-type">Select Report</label>
+        </div>
+      </div>
+      <div class="col s3">
+        <div class="input-field">
+          <select id="page-size" name="page_size">
+            <option value="10" selected>Top 10</option>
+            <option value="20" >Top 20</option>
+            <option value="30" >Top 30</option>
+            <option value="40" >Top 40</option>
+            <option value="50" >Top 50</option>
+          </select>
+          <label for="page-size">Show</label>
+        </div>
+      </div>
+      <div class="col s3">
+        <div class="input-field">
+          <label id="page-label" class="active" for="page">Page</label>
+          <input id="page" type="number" name="page" min="1" value="1" ></input>
+          <span id="page-total"></span>
         </div>
       </div>
     </div>

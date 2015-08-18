@@ -33,7 +33,7 @@ $(document).ready(function(event){
     initializeGraph();
   });
 
-  $("#map-report-type").change(function(){
+  $("#map-report-type, #page, #page-size").change(function(){
     initializeMap();
   });
 
@@ -64,15 +64,6 @@ $(document).ready(function(event){
       $("i.left").addClass("hide");
     }
   });
-
-  // Labels for ciricles
-  // $('.gmnoprint').tipsy({
-  //   gravity: 'w',
-  //   html: true,
-  //   title: function() {
-  //     return "Location:" + $(this).attr("original-title").split(";")[0] + "<br/>Value:" + $(this).attr("original-title").split(";")[1];
-  //   }
-  // });
 
 });
 
@@ -275,6 +266,13 @@ initializeMap = function(){
   var selectedReport = $("#map-report-type");
   var startDate = $("input[name=map_start_date]");
   var endDate = $("input[name=map_end_date]");
+  var page = $("#page").val() ? parseInt($("#page").val()) : 1;
+  var page_size = $("#page-size").val() ? parseInt($("#page-size").val()) : 10;
+
+  // Reset to first page if page size has changed
+  if(page_size != parseInt($("#page-size").data("previously-selected"))){
+    page = 1;
+  }
 
   if(selectedReport.length){
     // Get data about the selected option
@@ -282,7 +280,9 @@ initializeMap = function(){
       url: selectedReport.val(),
       data: {
         start_date: startDate.val(),
-        end_date: endDate.val()
+        end_date: endDate.val(),
+        page: page,
+        page_size: page_size
       },
       success: function(response){
         drawMap(response);
@@ -301,6 +301,12 @@ drawMap = function(response){
   });
 
   if(response.data.length > 0){
+    // Set filter options
+    $("#page-size").val(response.page_size).data("previously-selected", response.page_size);
+    $("#page").attr("max",response.total_page_size).val(response.page);
+    $("#page-total").html("of " + response.total_page_size);
+
+
     var max = d3.max(response.data, function(d) { return d.value; });
     var min = d3.min(response.data, function(d) { return d.value; });
     var total = d3.sum(response.data, function(d) { return d.value; });
@@ -356,9 +362,9 @@ attachInfo  = function(marker, info) {
     infowindow.open(marker.get('map'), marker);
   });
 
-  marker.addListener('mouseover', function() {
-    infowindow.open(marker.get('map'), marker);
-  });
+  // marker.addListener('mouseover', function() {
+  //   infowindow.open(marker.get('map'), marker);
+  // });
 }
 
 getLocationValue = function(location,list){
@@ -367,5 +373,14 @@ getLocationValue = function(location,list){
       return list[i].value;
     }
   }
-  return 0;
+  return 1;
+};
+
+generateSelectPageOption = function(size, selectedValue) {
+  var options = [];
+  for(var i=1; i <= size; i++){
+    var selected = selectedValue == i ? "selected" : "";
+    options.push("<option value='" + i + "' " + selected + " >" + i + "</option>");
+  }
+  return options.join("");
 };

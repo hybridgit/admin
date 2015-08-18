@@ -57,14 +57,22 @@ class RidersController < ApplicationController
   end
 
   def map_total_phone_numbers
+    @page = Integer(params[:page])
+    @page_size = Integer(params[:page_size])
     @total_phone_numbers = CabRequest.map_total_phone_numbers(params[:start_date], params[:end_date])
+                                     .paginate(page: @page, per_page: @page_size)
     @total_sms_sent = CabRequest.map_total_sms_sent(params[:start_date], params[:end_date])
+                                .paginate(page: @page, per_page: @page_size)
+    @total = CabRequest.map_total_phone_numbers_count(params[:start_date], params[:end_date])
 
     @response = {
       data: @total_phone_numbers,
       total_phone_numbers: @total_phone_numbers,
       total_sms_sent: @total_sms_sent,
-      successful_connections: []
+      successful_connections: [],
+      page: @page,
+      page_size: @page_size,
+      total_page_size: (@total.to_f/@page_size).ceil
     }
 
     respond_to do |format|
@@ -74,14 +82,22 @@ class RidersController < ApplicationController
   end
 
   def map_total_sms_sent
+    @page = Integer(params[:page])
+    @page_size = Integer(params[:page_size])
     @total_phone_numbers = CabRequest.map_total_phone_numbers(params[:start_date], params[:end_date])
+                                     .paginate(page: @page, per_page: @page_size)
     @total_sms_sent = CabRequest.map_total_sms_sent(params[:start_date], params[:end_date])
+                                .paginate(page: @page, per_page: @page_size)
+    @total = CabRequest.map_total_sms_sent_count(params[:start_date], params[:end_date])
 
     @response = {
       data: @total_sms_sent,
       total_phone_numbers: @total_phone_numbers,
       total_sms_sent: @total_sms_sent,
-      successful_connections: []
+      successful_connections: [],
+      page: @page,
+      page_size: @page_size,
+      total_page_size: (@total.to_f/@page_size).ceil
     }
 
     respond_to do |format|
