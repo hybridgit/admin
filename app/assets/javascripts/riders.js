@@ -297,7 +297,7 @@ drawMap = function(response){
   var map = new google.maps.Map(d3.select("#google-map").node(), {
     zoom: 12,
     center: new google.maps.LatLng(9.005401, 38.763611),
-    mapTypeId: google.maps.MapTypeId.TERRAIN
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
   if(response.data.length > 0){
