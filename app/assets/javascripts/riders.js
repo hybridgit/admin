@@ -326,7 +326,7 @@ drawMap = function(response){
     $("#google-map-stats table tbody").html("");
 
     for(var i=0; i < response.data.length; i++){
-      var percentageAndValue = (response.data[i].value/total * 100).toFixed(2) + "% <strong>("+ response.data[i].value +" of "+ total +")</strong>";
+      var percentageAndValue = (response.data[i].value/total * 100).toFixed(2) + "% ("+ response.data[i].value +" of "+ total +")";
       var marker = new google.maps.Marker({
         title: "Location: " + response.data[i].location + " Value: " + percentageAndValue,
         dataLocation: response.data[i].location,
