@@ -267,11 +267,16 @@ initializeMap = function(){
   var startDate = $("input[name=map_start_date]");
   var endDate = $("input[name=map_end_date]");
   var page = $("#page").val() ? parseInt($("#page").val()) : 1;
-  var page_size = $("#page-size").val() ? parseInt($("#page-size").val()) : 10;
+  var page_size = $("#page-size").val();
 
-  // Reset to first page if page size has changed
-  if(page_size != parseInt($("#page-size").data("previously-selected"))){
+  if(page_size == "All"){
     page = 1;
+  } else {
+    page_size = parseInt($("#page-size").val());
+    // Reset to first page if page size has changed
+    if(page_size != parseInt($("#page-size").data("previously-selected"))){
+      page = 1;
+    }
   }
 
   if(selectedReport.length){
@@ -290,7 +295,7 @@ initializeMap = function(){
       dataType: 'json'
     });
   }
-}
+};
 
 drawMap = function(response){
   // Create the Google Map…
@@ -321,9 +326,9 @@ drawMap = function(response){
     $("#google-map-stats table tbody").html("");
 
     for(var i=0; i < response.data.length; i++){
-      var percentage = (response.data[i].value/total * 100).toFixed(2) + "%";
+      var percentageAndValue = (response.data[i].value/total * 100).toFixed(2) + "% <strong>("+ response.data[i].value +" of "+ total +")</strong>";
       var marker = new google.maps.Marker({
-        title: "Location: " + response.data[i].location + " Value: " + percentage,
+        title: "Location: " + response.data[i].location + " Value: " + percentageAndValue,
         dataLocation: response.data[i].location,
         dataValue: (response.data[i].value/total * 100).toFixed(2) + "%",
         position: {lat: response.data[i].location_lat, lng: response.data[i].location_long},
@@ -338,7 +343,7 @@ drawMap = function(response){
         map: map
       });
 
-      attachInfo(marker, "<strong>Location:</strong> " + response.data[i].location + "<br/><strong>Value:</strong> " + percentage);
+      attachInfo(marker, "<strong>Location:</strong> " + response.data[i].location + "<br/><strong>Value:</strong> " + percentageAndValue);
 
       $("#google-map-stats table tbody")
         .append("<tr><td>" + (i+1) + "</td>" +
@@ -361,11 +366,7 @@ attachInfo  = function(marker, info) {
   marker.addListener('click', function() {
     infowindow.open(marker.get('map'), marker);
   });
-
-  // marker.addListener('mouseover', function() {
-  //   infowindow.open(marker.get('map'), marker);
-  // });
-}
+};
 
 getLocationValue = function(location,list){
   for(var i=0; i < list.length; i++){
