@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     get "delete"
   end
 
+  resources :drivers do
+    get "delete"
+  end
 
 
   get '/login',  :to => 'sessions#new'

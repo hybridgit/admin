@@ -1,0 +1,27 @@
+
+<%= form_for(@driver, remote: true) do |f| %>
+<% @active_class = @driver.name ? "active" : "" %>
+<div class="modal-content">
+  <ul class="errors"></ul>
+  <div class="input-field">
+    <%= f.label :name, class: @active_class %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="input-field">
+    <%= f.label :location, class: @active_class %>
+    <%= f.text_field :location %>
+  </div>
+  <div class="input-field">
+    <%= f.label "Latitude", class: @active_class %>
+    <%= f.text_field :location_lat %>
+  </div>
+  <div class="input-field">
+    <%= f.label "Longitude", class: @active_class %>
+    <%= f.text_field :location_long %>
+  </div>
+</div>
+<div class="modal-footer">
+  <%= f.submit "Submit", {:class => "btn blue-grey darken-3 waves-effect waves-light"} %>
+  <%= link_to "Cancel", "#", class: "btn modal-close", data: {dismiss: "modal"} %>
+</div>
+<% end %>
