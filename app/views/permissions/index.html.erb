@@ -2,11 +2,12 @@
   <div class="container">
     <div class="row">
       <div class="col s12">
+
         <p id="notice"><%= notice %></p>
 
         <h4>Listing Permissions</h4>
 
-        <table class="striped">
+        <table id="permissions-list" class="striped">
           <thead>
             <tr>
               <th>Controller</th>
@@ -15,23 +16,21 @@
           </thead>
 
           <tbody>
-            <% @controllers.each do |controller| %>
-            <% @methods = [] %>
+            <%= render "index" %>
+          </tbody>
+          <tfoot>
             <tr>
-              <td>
-                <%= controllerName controller.name.to_s %>
-              </td>
-              <td>
-                <% controller.action_methods.each do |action| %>
-                   <% @methods << "#{action.to_s}" unless SessionsHelper.public_instance_methods.include? action.to_sym %>
-                <% end %>
-                <%= @methods.join ", " %>
+              <td colspan="2">
+                <%= page_navigation_links @permissions %>
               </td>
             </tr>
-            <% end %>
-          </tbody>
+          </tfoot>
         </table>
       </div>
     </div>
   </div>
 </main>
+
+<%= link_to raw('<i class="material-icons">add</i>'), new_permission_path, remote: true, class: "btn-floating btn-large waves-effect waves-light yellow darken-2 black-text action-button"%>
+
+<div id="permission-modal" class="modal"></div>

@@ -1,14 +1,19 @@
-<p id="notice"><%= notice %></p>
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
 
-<p>
-  <strong>Controller:</strong>
-  <%= @permission.controller %>
-</p>
+        <p>
+          <strong>Controller:</strong>
+          <%= @permission.controller %>
+        </p>
 
-<p>
-  <strong>Action:</strong>
-  <%= @permission.action %>
-</p>
+        <p>
+          <strong>Action:</strong>
+          <%= @permission.action %>
+        </p>
 
-<%= link_to 'Edit', edit_permission_path(@permission) %> |
-<%= link_to 'Back', permissions_path %>
+      </div>
+    </div>
+  </div>
+</main>

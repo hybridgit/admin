@@ -3,6 +3,14 @@
     <div class="nav-wrapper">
       <a href="#" data-activates="drawer" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       <%= link_to "Ride Admin", root_path, {:class => "brand-logo black-text"} %>
+      <ul id="user-info" class="right hide-on-med-and-down">
+        <% if signed_in? %>
+          <li><%= link_to raw("<i class='material-icons' tile='#{current_user.username}'>account_circle</i>"), current_user %></li>
+          <li><%= link_to raw("<i class='material-icons' tile='Logout'>exit_to_app</i>"), logout_path %></li>
+        <% else %>
+          <li><%= link_to "Login", login_path %></li>
+        <% end %>
+      </ul>
     </div>
     <%= render 'layouts/sidenav' %>
   </nav>

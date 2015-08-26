@@ -1,0 +1,9 @@
+<% @permissions.each do |permission| %>
+<tr >
+  <td><%= controllerName permission.controller  %></td>
+  <td><%= permission.action %></td>
+  <td class="actions">
+    <%= link_to raw("<i class='material-icons circle'>cancel</i>"), permission_delete_path(permission), remote: true %>
+  </td>
+</tr>
+<% end %>

@@ -1,0 +1,26 @@
+$("#permission-modal").html("<%= escape_javascript(render 'new') %>")
+$("#permission-modal").openModal({
+  ready: function(){
+
+    $("#controller").change(function(e){
+      $.ajax({
+        url: "/permissions/actions",
+        data: {
+          permissions_controller: $("#controller").val()
+        },
+        success: function(actions){
+          $("#action").html("")
+          $("#action").siblings().remove()
+          var options = []
+          for(var i=0; i < actions.length; i++){
+            options.push("<option value='" + actions[i] + "'>" + actions[i] + "</option>")
+          }
+          $("#action").append(options.join(""))
+          $('#action').material_select()
+        },
+        dataType: 'json'
+      })
+    })
+    $('.input-field select').material_select()
+  }
+})

@@ -1,0 +1,9 @@
+$("ul.errors").html("")
+<% if @permission.errors.any? %>
+  <% @permission.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li/>").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %>
+  $("#permissions-list tbody").html("<%= escape_javascript(render 'index') %>")
+  $("#permission-modal").closeModal()
+<% end %>

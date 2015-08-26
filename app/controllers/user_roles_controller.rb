@@ -14,7 +14,7 @@ class UserRolesController < ApplicationController
     @user = User.find(params[:user_id])
     @user_role = UserRole.new
     @user_role_ids = @user.user_roles.map {|user_role| user_role.role_id}
-    @available_roles = Role.where("id NOT IN (?)", @user_role_ids)
+    @available_roles = @user_role_ids.empty? ?  Role.all : Role.where("id NOT IN (?)", @user_role_ids) ;
   end
 
   def create

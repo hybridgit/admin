@@ -9,73 +9,65 @@ class PermissionsController < ApplicationController
   respond_to :html, :js
 
   # GET /permissions
-  # GET /permissions.xml
+  # GET /permissions.js
   def index
-    @controllers = Permission.controllers
+    @permissions = Permission.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
   end
 
   # GET /permissions/1
-  # GET /permissions/1.xml
+  # GET /permissions/1.js
   def show
     @permission = Permission.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml { render :xml => @permission }
-    end
   end
 
   # GET /permissions/new
-  # GET /permissions/new.xml
+  # GET /permissions/new.js
   def new
     @permission = Permission.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml { render :xml => @permission }
-    end
+    @available_controllers = Permission.controllers
   end
 
   # GET /permissions/1/edit
   def edit
     @permission = Permission.find(params[:id])
+    @available_controllers = Permission.controllers
   end
 
   # POST /permissions
-  # POST /permissions.xml
+  # POST /permissions.js
   def create
-    @permission = Permission.new(params[:permission])
-
-    respond_to do |format|
-      if @permission.save
-        format.html { redirect_to(@permission, :notice => 'Permission was successfully created.') }
-        format.xml { render :xml => @permission, :status => :created, :location => @permission }
-      else
-        format.html { render :action => "new" }
-        format.xml { render :xml => @permission.errors, :status => :unprocessable_entity }
-      end
-    end
+    @permissions = Permission.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+    @permission = Permission.create(params[:permission])
   end
 
   # PUT /permissions/1
-  # PUT /permissions/1.xml
+  # PUT /permissions/1.js
   def update
     @permission = Permission.find(params[:id])
+    @permission.update_attributes(params[:permission])
+    @permissions = Permission.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+  end
+
+  # GET /permission/1/delete
+  # GET /permission/1/delete.js
+  def delete
+    @permission = Permission.find(params[:permission_id])
+  end
+
+  # GET /permission/actions?controller=controllerName
+  # GET /permission/actions.js?controller=controllerName
+  def actions
+    @actions = Permission.actions(params[:permissions_controller])
 
     respond_to do |format|
-      if @permission.update_attributes(params[:permission])
-        format.html { redirect_to(@permission, :notice => 'Permission was successfully updated.') }
-        format.xml { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml { render :xml => @permission.errors, :status => :unprocessable_entity }
-      end
+      format.json { render :json => @actions }
     end
   end
 
   # DELETE /permissions/1
-  # DELETE /permissions/1.xml
+  # DELETE /permissions/1.js
   def destroy
+    @permissions = Permission.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
     @permission = Permission.find(params[:id])
     @error = nil
 
@@ -83,10 +75,6 @@ class PermissionsController < ApplicationController
       @permission.destroy
     rescue ActiveRecord::DeleteRestrictionError => e
       @error = e.message
-    end
-
-    respond_to do |format|
-      format.html { @error.nil? ? redirect_to(permissions_url) : redirect_to(@permission, :notice => @error) }
     end
   end
 end

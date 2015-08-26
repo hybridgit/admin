@@ -11,11 +11,16 @@ Rails.application.routes.draw do
   get 'riders/map_total_sms_sent'
   get 'riders/map_successful_connections'
 
-  resources :permissions
+  get 'permissions/actions'
+  resources :permissions do
+    get "delete"
+  end
+
   resources :roles do
     get "delete"
     resources :role_permissions, :as => :permissions
   end
+
   resources :users do
     resources :user_roles, :as => :roles do
       get "delete"
