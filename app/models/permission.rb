@@ -6,26 +6,25 @@ class Permission < ActiveRecord::Base
 
   def self.controllers
     Rails.application.eager_load!
-    ApplicationController.descendants
+    @controllers = []
+    ApplicationController.descendants.each do |controller|
+      @controllers << controller.controller_name
+    end
+    @controllers
   end
 
   def self.actions(controller)
     Rails.application.eager_load!
     @controller = ApplicationController.descendants.find do |ctrl|
-      ctrl.to_s == controller
+      ctrl.controller_name == controller
     end
 
     @methods = []
     @controller.action_methods.map do |action|
-       @methods << action.to_s unless SessionsHelper.public_instance_methods.include? action.to_sym
+      @methods << action.to_s unless SessionsHelper.public_instance_methods.include? action.to_sym
     end
-
     @methods
   end
-
-  # def self.actions
-  #   %w{index show new edit create update destroy}
-  # end
 
   def display_field
     "#{self.controller} - #{self.action}"

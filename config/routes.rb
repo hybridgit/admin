@@ -18,14 +18,16 @@ Rails.application.routes.draw do
 
   resources :roles do
     get "delete"
-    resources :role_permissions, :as => :permissions
+    resources :role_permissions, :as => :permissions  do
+      get "delete"
+    end
   end
 
   resources :users do
+    get "delete"
     resources :user_roles, :as => :roles do
       get "delete"
     end
-    get "delete"
   end
 
   resources :drivers do

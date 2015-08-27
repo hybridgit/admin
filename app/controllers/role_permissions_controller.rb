@@ -13,7 +13,8 @@ class RolePermissionsController < ApplicationController
   def new
     @role = Role.find(params[:role_id])
     @role_permission = RolePermission.new
-    @available_controllers = Permssion.controllers
+    @role_permission_ids = @role.role_permissions.map {|role_permission| role_permission.permission_id}
+    @available_permissions = @role_permission_ids.empty? ? Permission.all : Permission.where("id NOT IN (?)", @role_permission_ids)
   end
 
   def create
@@ -22,7 +23,7 @@ class RolePermissionsController < ApplicationController
   end
 
   def delete
-    @role = Role.find(params[:user_id])
+    @role = Role.find(params[:role_id])
     @role_permission = RolePermission.find(params[:permission_id])
   end
 

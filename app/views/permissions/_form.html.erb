@@ -7,7 +7,7 @@
         <select name="permission[controller]" id="controller">
           <option value="0">Please Select Controller</option>
             <% @available_controllers.each do |controller| %>
-              <option value="<%= controller.to_s %>"><%= controllerName controller.to_s %></option>
+              <option value="<%= controller %>"><%=  controller %></option>
             <% end %>
         </select>
         <%= f.label :controller %>

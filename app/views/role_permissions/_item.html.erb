@@ -1,0 +1,8 @@
+<% @role.role_permissions.each do |role_permission| %>
+  <tr >
+    <td><%= role_permission.role.name %></td>
+    <td class="actions">
+      <%= link_to raw("<i class='material-icons circle'>cancel</i>"), role_permission_delete_path(@role, role_permission), remote: true %>
+    </td>
+  </tr>
+<% end %>

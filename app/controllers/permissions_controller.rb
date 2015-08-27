@@ -1,5 +1,4 @@
 class PermissionsController < ApplicationController
-  include PermissionsHelper
 
   before_filter :authenticate
   before_filter do |c|

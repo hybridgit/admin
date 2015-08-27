@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+
+      <p id="notice"><%= notice %></p>
+
+      <h5><%= "#{@role.name}'s Permissions" %></h5>
+
+      <table id="role-permissions-list" class="striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%= render "/role_permissions/item" %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<%= link_to raw('<i class="material-icons">add</i>'), new_role_permission_path(@role), remote: true, class: "btn-floating btn-large waves-effect waves-light yellow darken-2 black-text action-button"%>
+
+<div id="role-permission-modal" class="modal"></div>

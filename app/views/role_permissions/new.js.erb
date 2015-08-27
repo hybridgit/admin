@@ -1,0 +1,6 @@
+$("#role-permission-modal").html("<%= escape_javascript(render 'new') %>")
+$("#role-permission-modal").openModal({
+  ready: function(){
+    $('.input-field select').material_select()
+  }
+})
