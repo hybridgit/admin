@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  city: MyString
+  sub_city: MyString
+  woreda: MyString
+  kebele: MyString
+  house_number: MyString
+
+two:
+  city: MyString
+  sub_city: MyString
+  woreda: MyString
+  kebele: MyString
+  house_number: MyString

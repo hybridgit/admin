@@ -1,0 +1,9 @@
+$("ul.errors").html("")
+<% if @contact_method.errors.any? %>
+  <% @contact_method.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li/>").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %>
+  $("#contact-methods-list tbody").html("<%= escape_javascript(render 'index') %>")
+  $("#contact-method-modal").closeModal()
+<% end %>

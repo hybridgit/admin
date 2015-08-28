@@ -1,0 +1,9 @@
+<% @contact_methods.each do |contact_method| %>
+<tr >
+  <td><%= contact_method.name %></td>
+  <td class="actions right-align">
+    <%= link_to raw("<i class='material-icons circle'>mode_edit</i>"), edit_contact_method_path(contact_method), remote: true %>
+    <%= link_to raw("<i class='material-icons circle'>cancel</i>"), contact_method_delete_path(contact_method), remote: true %>
+  </td>
+</tr>
+<% end %>

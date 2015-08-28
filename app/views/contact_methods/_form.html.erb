@@ -1,0 +1,18 @@
+<%= form_for(@contact_method, remote: true) do |f| %>
+<% @active_class = @contact_method.id ? "active" : "" %>
+<div class="modal-content">
+  <ul class="errors"></ul>
+  <div class="row">
+    <div class="col s12">
+      <div class="input-field">
+        <%= f.label :name, class: @active_class %><br>
+        <%= f.text_field :name %>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <%= f.submit "Submit", {:class => "btn blue-grey darken-3 waves-effect waves-light"} %>
+      <%= link_to "Cancel", "#", class: "btn modal-close", data: {dismiss: "modal"} %>
+    </div>
+  </div>
+</div>
+<% end %>

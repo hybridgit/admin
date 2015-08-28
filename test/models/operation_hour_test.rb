@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DriverListTest < ActiveSupport::TestCase
+class OperationHourTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

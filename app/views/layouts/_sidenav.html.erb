@@ -4,8 +4,8 @@
       <a class="collapsible-header bold"><i class="material-icons" role="presentation">directions_walk</i>Riders</a>
       <div class="collapsible-body">
         <ul>
-          <li><%= link_to "Stats", "/riders/stats" %></li>
-          <li><%= link_to "Map", "/riders/map" %></li>
+          <li><%= link_to "Stats", riders_stats_path %></li>
+          <li><%= link_to "Map", riders_map_path %></li>
           <li><a href="">Transactions</a></li>
         </ul>
       </div>
@@ -31,8 +31,10 @@
       <a class="collapsible-header bold"><i class="material-icons" role="presentation">settings</i>Settings</a>
       <div class="collapsible-body">
         <ul>
-          <li><a href="">First Link</a></li>
-          <li><a href="">Second Link</a></li>
+          <li><%= link_to "Car Types", car_types_path %></li>
+          <li><%= link_to "Contact Methods", contact_methods_path %></li>
+          <li><%= link_to "Operation Hours", operation_hours_path %></li>
+          <li><%= link_to "Relationships", relationships_path %></li>
         </ul>
       </div>
     </li>

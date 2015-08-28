@@ -29,7 +29,13 @@ class UserRolesController < ApplicationController
 
   def destroy
     @user_role = UserRole.find(params[:id])
-    @user_role.destroy
     @user = User.find(params[:user_id])
+    @error = nil
+
+    begin
+      @user_role.destroy
+    rescue ActiveRecord::DeleteRestrictionError => e
+      @error = e.message
+    end
   end
 end

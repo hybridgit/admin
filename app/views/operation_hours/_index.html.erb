@@ -1,0 +1,9 @@
+<% @operation_hours.each do |operation_hour| %>
+<tr >
+  <td><%= operation_hour.name %></td>
+  <td class="actions right-align">
+    <%= link_to raw("<i class='material-icons circle'>mode_edit</i>"), edit_operation_hour_path(operation_hour), remote: true %>
+    <%= link_to raw("<i class='material-icons circle'>cancel</i>"), operation_hour_delete_path(operation_hour), remote: true %>
+  </td>
+</tr>
+<% end %>

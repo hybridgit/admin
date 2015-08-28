@@ -1,0 +1,9 @@
+<h3 class="modal-header"><%= "Delete #{@driver.first_name}'s Emergency Contact" %></h3>
+<div class="modal-content">
+  <ul class="errors"></ul>
+  <p>Are you sure you wish to delete <strong><%= @emergency_contact.name %></strong>?</p>
+</div>
+<div class="modal-footer">
+  <%= link_to "Confirm Delete", driver_contact_path(@driver, @emergency_contact), method: :delete, remote: true, class: "btn blue-grey darken-3 waves-effect waves-light" %>
+  <%= link_to "Cancel", "#", class: "btn modal-close" %>
+</div>

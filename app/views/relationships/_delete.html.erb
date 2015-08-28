@@ -1,0 +1,9 @@
+<h3 class="modal-header">Delete Relationship</h3>
+<div class="modal-content">
+  <ul class="errors"></ul>
+  <p>Are you sure you wish to delete <strong><%= @relationship.name %></strong>?</p>
+</div>
+<div class="modal-footer">
+  <%= link_to "Confirm Delete", relationship_path(@relationship), method: :delete, remote: true, class: "btn blue-grey darken-3 waves-effect waves-light" %>
+  <%= link_to "Cancel", "#", class: "btn modal-close" %>
+</div>

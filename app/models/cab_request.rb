@@ -1,5 +1,5 @@
 class CabRequest < ActiveRecord::Base
-  belongs_to :driver_list
+  belongs_to :driver
 
   def self.total_phone_numbers(start_date, end_date)
     self.select("date(created_at) as date, count(DISTINCT current_cell_no) as value")

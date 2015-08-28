@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  get '/login',  :to => 'sessions#new'
+  get '/logout', :to => 'sessions#destroy'
+  post '/sessions/create', :to => 'sessions#create'
+
   root 'riders#stats'
 
   get 'riders/stats'
@@ -32,12 +37,26 @@ Rails.application.routes.draw do
 
   resources :drivers do
     get "delete"
+    resource :emergency_contacts, :as => :contacts do
+      get "delete"
+    end
   end
 
+  resources :addresses
 
-  get '/login',  :to => 'sessions#new'
-  get '/logout', :to => 'sessions#destroy'
-  post '/sessions/create', :to => 'sessions#create'
+  resources :operation_hours do
+    get "delete"
+  end
+  resources :contact_methods do
+    get "delete"
+  end
+  resources :car_types do
+    get "delete"
+  end
+  resources :relationships do
+    get "delete"
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

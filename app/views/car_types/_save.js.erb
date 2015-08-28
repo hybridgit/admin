@@ -1,0 +1,9 @@
+$("ul.errors").html("")
+<% if @car_type.errors.any? %>
+  <% @car_type.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li/>").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %>
+  $("#car-types-list tbody").html("<%= escape_javascript(render 'index') %>")
+  $("#car-type-modal").closeModal()
+<% end %>

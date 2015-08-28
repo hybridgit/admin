@@ -1,0 +1,35 @@
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+
+        <p id="notice"><%= notice %></p>
+
+        <h4>Car Types</h4>
+
+        <table id="car-types-list" class="striped">
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead><tbody>
+            <%= render "index" %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3">
+                <%= page_navigation_links @car_types %>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<%= link_to raw('<i class="material-icons">add</i>'), new_car_type_path, remote: true, class: "btn-floating btn-large waves-effect waves-light yellow darken-2 black-text action-button"%>
+
+<div id="car-type-modal" class="modal"></div>

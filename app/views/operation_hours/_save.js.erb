@@ -1,0 +1,9 @@
+$("ul.errors").html("")
+<% if @operation_hour.errors.any? %>
+  <% @operation_hour.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li/>").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %>
+  $("#operation-hours-list tbody").html("<%= escape_javascript(render 'index') %>")
+  $("#operation-hour-modal").closeModal()
+<% end %>

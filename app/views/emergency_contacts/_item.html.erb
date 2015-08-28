@@ -1,0 +1,10 @@
+<% @driver.emergency_contacts.each do |emergency_contact| %>
+<tr >
+  <td><%= emergency_contact.name %></td>
+  <td><%= emergency_contact.relationship.name %></td>
+  <td><%= emergency_contact.phone_number %></td>
+  <td class="actions right-align">
+      <%= link_to raw("<i class='material-icons circle'>cancel</i>"), driver_contact_delete_path(@driver, emergency_contact), remote: true %>
+  </td>
+</tr>
+<% end %>

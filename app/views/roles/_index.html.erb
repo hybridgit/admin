@@ -2,11 +2,9 @@
 <tr >
   <td><%= link_to role.name, role %></td>
   <td><%= link_to role.description, role %></td>
-  <td class="actions">
-    <% unless role.name == "Administrator" %>
-      <%= link_to raw("<i class='material-icons circle'>mode_edit</i>"), edit_role_path(role), remote: true %>
-      <%= link_to raw("<i class='material-icons circle'>cancel</i>"), role_delete_path(role), remote: true %>
-    <% end %>
+  <td class="actions right-align">
+    <%= link_to raw("<i class='material-icons circle'>mode_edit</i>"), edit_role_path(role), remote: true %>
+    <%= link_to raw("<i class='material-icons circle'>cancel</i>"), role_delete_path(role), remote: true %>
   </td>
 </tr>
 <% end %>

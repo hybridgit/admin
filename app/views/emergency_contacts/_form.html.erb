@@ -1,0 +1,30 @@
+<%= form_for(@emergency_contact, remote: true) do |f| %>
+<% @active_class = @emergency_contact.id ? "active" : "" %>
+<div class="modal-content">
+  <ul class="errors"></ul>
+  <div class="row">
+    <div class="col s12">
+      <div class="input-field">
+        <%= f.label :name, class: @active_class %><br>
+        <%= f.text_field :name %>
+      </div>
+    </div>
+    <div class="col s12">
+      <div class="input-field">
+        <%= f.collection_select(:relationship_id, @relationships, :id, :name, {:prompt => true}) %>
+        <%= f.label :relationship_id %>
+      </div>
+    </div>
+    <div class="col s12">
+      <div class="input-field">
+        <%= f.label :phone_number, class: @active_class %><br>
+        <%= f.text_field :phone_number %>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <%= f.submit "Submit", {:class => "btn blue-grey darken-3 waves-effect waves-light"} %>
+      <%= link_to "Cancel", "#", class: "btn modal-close", data: {dismiss: "modal"} %>
+    </div>
+  </div>
+</div>
+<% end %>

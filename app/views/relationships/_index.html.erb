@@ -1,0 +1,9 @@
+<% @relationships.each do |relationship| %>
+<tr >
+  <td><%= relationship.name %></td>
+  <td class="actions right-align">
+    <%= link_to raw("<i class='material-icons circle'>mode_edit</i>"), edit_relationship_path(relationship), remote: true %>
+    <%= link_to raw("<i class='material-icons circle'>cancel</i>"), relationship_delete_path(relationship), remote: true %>
+  </td>
+</tr>
+<% end %>
