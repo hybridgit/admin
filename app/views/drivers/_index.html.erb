@@ -1,9 +1,15 @@
 <% @drivers.each do |driver| %>
   <tr>
-    <td><%= link_to driver.name, driver %></td>
-    <td><%= link_to driver.location, driver %></td>
+    <td>
+      <input type="checkbox" id='<%= "a-#{driver.id}" %>' <%= "checked='checked'" if driver.is_active? %> />
+      <label for='<%= "a-#{driver.id}"%>' ></label>
+    </td>
+    <td><%= link_to driver.display_field, driver %></td>
+    <td><%= link_to driver.phone_number, driver %></td>
+    <td><%= link_to driver.location_name, driver %></td>
+    <td><%= link_to "0", driver %></td>
     <td class="actions right-align">
-      <%= link_to raw("<i class='material-icons circle'>mode_edit</i>"), edit_driver_path(driver), remote: true %>
+      <%= link_to raw("<i class='material-icons circle'>mode_edit</i>"), edit_driver_path(driver) %>
       <%= link_to raw("<i class='material-icons circle'>cancel</i>"), driver_delete_path(driver), remote: true %>
     </td>
   </tr>

@@ -24,3 +24,6 @@ Vagrantfile
 
 # Ignore OS X system files
 .DS_Store
+
+# Ignore the public folder
+/public

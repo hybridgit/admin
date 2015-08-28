@@ -10,8 +10,11 @@
         <table id="drivers-list"class="striped">
           <thead>
             <tr>
+              <th>Active</th>
               <th>Name</th>
+              <th>Phone Number</th>
               <th>Location</th>
+              <th>Total Trips</th>
               <th></th>
             </tr>
           </thead>
@@ -33,6 +36,6 @@
   </div>
 </main>
 
-<%= link_to raw('<i class="material-icons">add</i>'), new_driver_path, remote: true, class: "btn-floating btn-large waves-effect waves-light yellow darken-2 black-text action-button"%>
+<%= link_to raw('<i class="material-icons">add</i>'), new_driver_path, class: "btn-floating btn-large waves-effect waves-light yellow darken-2 black-text action-button"%>
 
 <div id="driver-modal" class="modal"></div>

@@ -53,3 +53,23 @@ ul.errors{
   color: color("red", "darken-2");
   margin: 0 0 0 0;
 }
+
+form{
+  div.select-field{
+    margin-bottom: 40px;
+  }
+  span.helper-text {
+    display: block;
+    font-size: .8em;
+    font-style: italic;
+    color: #aaa;
+    margin-top: -10px;
+  }
+
+}
+
+table{
+  td.actions{
+    min-width: 75px;
+  }
+}

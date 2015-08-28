@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150827204810) do
+ActiveRecord::Schema.define(version: 20150828163134) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "city",         limit: 255
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20150827204810) do
     t.string   "house_number", limit: 255
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.string   "phone_number", limit: 255
+    t.integer  "driver_id",    limit: 4
   end
 
   create_table "cab_requests", force: :cascade do |t|
@@ -28,12 +30,10 @@ ActiveRecord::Schema.define(version: 20150827204810) do
     t.float    "location_lat",    limit: 24
     t.float    "location_long",   limit: 24
     t.string   "current_cell_no", limit: 255
-    t.integer  "driver_list_id",  limit: 4
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.integer  "driver_id",       limit: 4
   end
-
-  add_index "cab_requests", ["driver_list_id"], name: "index_cab_requests_on_driver_list_id", using: :btree
 
   create_table "car_types", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20150827204810) do
     t.string   "phone_number",    limit: 255
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.integer  "driver_id",       limit: 4
   end
 
   create_table "locations", force: :cascade do |t|

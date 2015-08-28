@@ -1,11 +1,20 @@
 <main>
   <div class="container">
+    <% if notice %>
+    <div class="row">
+      <p id="notice"><%= notice %></p>
+    </div>
+    <% end %>
     <div class="row">
       <div class="col s6">
-        <p id="notice"><%= notice %></p>
         <p>
           <%= image_tag @driver.profile_image.url(:thumb) %>
         </p>
+        <p>
+          <%= image_tag @driver.drivers_license_copy.url(:thumb) %>
+        </p>
+      </div>
+      <div class="col s6">
         <p>
           <strong>Name:</strong>
           <%= @driver.display_field %>
@@ -18,11 +27,6 @@
           <strong>Drivers License:</strong>
           <%= @driver.drivers_license_id %>
         </p>
-        <p>
-          <%= image_tag @driver.drivers_license_copy.url(:thumb) %>
-        </p>
-      </div>
-      <div class="col s6">
         <p>
           <strong>Car Type:</strong>
           <%= @driver.car_type.name %>
@@ -40,17 +44,51 @@
     <div class="row">
         <div class="col s12">
           <ul class="tabs">
-            <li class="tab col s3"><a class="active" href="#driver-address">Address</a></li>
-            <li class="tab col s3"><a href="#driver-location">Location</a></li>
-            <li class="tab col s3"><a href="#driver-emergency-contact">Ememrgency Contact</a></li>
+            <li class="tab col s4"><a class="active" href="#driver-address">Address</a></li>
+            <li class="tab col s4"><a href="#driver-location">Location</a></li>
+            <li class="tab col s4"><a href="#driver-emergency-contact">Contacts</a></li>
           </ul>
         </div>
         <div id="driver-address" class="col s12">
-          Address
-        <div>
-        <div id="driver-address" class="col s12">
-          Location
-        <div>
+          <p>
+            <strong>City:</strong>
+            <%= @driver.address.city %>
+          </p>
+          <p>
+            <strong>Sub City:</strong>
+            <%= @driver.address.sub_city %>
+          </p>
+          <p>
+            <strong>Woreda:</strong>
+            <%= @driver.address.woreda %>
+          </p>
+          <p>
+            <strong>Kebele:</strong>
+            <%= @driver.address.kebele %>
+          </p>
+          <p>
+            <strong>House Number:</strong>
+            <%= @driver.address.house_number %>
+          </p>
+          <p>
+            <strong>Phone Number:</strong>
+            <%= @driver.address.phone_number %>
+          </p>
+        </div>
+        <div id="driver-location" class="col s12">
+          <p>
+            <strong>Location:</strong>
+            <%= @driver.location.location_name %>
+          </p>
+          <p>
+            <strong>Latitude:</strong>
+            <%= @driver.location.latitude %>
+          </p>
+          <p>
+            <strong>Longitude:</strong>
+            <%= @driver.location.longitude %>
+          </p>
+        </div>
         <div id="driver-emergency-contact" class="col s12">
           Emergency Contact
         </div>

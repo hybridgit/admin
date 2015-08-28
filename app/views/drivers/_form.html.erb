@@ -1,27 +1,106 @@
 
-<%= form_for(@driver, remote: true) do |f| %>
-<% @active_class = @driver.name ? "active" : "" %>
-<div class="modal-content">
-  <ul class="errors"></ul>
-  <div class="input-field">
-    <%= f.label :name, class: @active_class %>
-    <%= f.text_field :name %>
+<%= form_for(@driver,  html: { multipart: true }) do |f| %>
+<% @active_class = @driver.id ? "active" : "" %>
+
+<ul class="errors"></ul>
+<div class="row">
+
+  <div class="col s6">
+    <div class="input-field">
+      <%= f.file_field :profile_image %>
+    </div>
+    <div class="input-field">
+      <%= f.label :first_name, class: @active_class %>
+      <%= f.text_field :first_name %>
+    </div>
+    <div class="input-field">
+      <%= f.label :middle_name, class: @active_class %>
+      <%= f.text_field :middle_name %>
+    </div>
+    <div class="input-field">
+      <%= f.label :last_name, class: @active_class %>
+      <%= f.text_field :last_name %>
+    </div>
+    <div class="input-field">
+      <%= f.label :date_of_birth, class: "active" %>
+      <%= f.date_field :date_of_birth %>
+    </div>
+    <div class="input-field">
+      <%= f.label :drivers_license_id, class: @active_class %>
+      <%= f.text_field :drivers_license_id %>
+    </div>
+    <div class="input-field">
+      <%= f.file_field :drivers_license_copy %>
+    </div>
   </div>
-  <div class="input-field">
-    <%= f.label :location, class: @active_class %>
-    <%= f.text_field :location %>
+
+  <div class="col s6">
+    <div class="input-field select-field">
+      <%= f.collection_select(:car_type_id, @car_types, :id, :name, {:prompt => true}) %>
+      <%= f.label :car_types_id %>
+    </div>
+    <div class="input-field select-field">
+      <%= f.collection_select(:operation_hour_id, @operation_hours, :id, :name, {:prompt => true}) %>
+      <%= f.label :operation_hour_id %>
+    </div>
+    <div class="input-field select-field">
+      <%= f.collection_select(:contact_method_id, @contact_methods, :id, :name, {:prompt => true}) %>
+      <%= f.label :contact_method_id %>
+    </div>
+    <div class="input-field select-field">
+      <%= f.collection_select(:location_id, @locations, :id, :location_name, {:prompt => true}) %>
+      <%= f.label :location_id %>
+    </div>
+
+    <h5>Address</h5>
+    <div class="divider"></div>
+
+    <div class="row">
+      <div class="col s6">
+        <div class="input-field">
+          <%= f.label :city, class: @active_class %>
+          <input id="address-city" name="address[city]" type="text" />
+        </div>
+      </div>
+      <div class="col s6">
+        <div class="input-field">
+          <%= f.label :sub_city, class: @active_class %>
+          <input id="address-sub-city" name="address[sub_city]" type="text" />
+        </div>
+      </div>
+      <div class="col s6">
+        <div class="input-field">
+          <%= f.label :woreda, class: @active_class %>
+          <input id="address-woreda" name="address[woreda]" type="text" />
+        </div>
+      </div>
+      <div class="col s6">
+        <div class="input-field">
+          <%= f.label :kebele, class: @active_class %>
+          <input id="address-kebele" name="address[kebele]" type="text" />
+        </div>
+      </div>
+      <div class="col s6">
+        <div class="input-field">
+          <%= f.label :house_number, class: @active_class %>
+          <input id="address-house-number" name="address[house_number]" type="text" />
+        </div>
+      </div>
+      <div class="col s6">
+        <div class="input-field">
+          <%= f.label :phone_number, class: @active_class %>
+          <input id="address-phone-number" name="address[phone_number]" type="text" />
+        </div>
+      </div>
+    </div>
+
   </div>
-  <div class="input-field">
-    <%= f.label "Latitude", class: @active_class %>
-    <%= f.text_field :location_lat %>
-  </div>
-  <div class="input-field">
-    <%= f.label "Longitude", class: @active_class %>
-    <%= f.text_field :location_long %>
-  </div>
+
 </div>
-<div class="modal-footer">
-  <%= f.submit "Submit", {:class => "btn blue-grey darken-3 waves-effect waves-light"} %>
+<div class="row">
+  <%= f.button "Submit", {:class => "btn blue-grey darken-3 waves-effect waves-light"} %>
   <%= link_to "Cancel", "#", class: "btn modal-close", data: {dismiss: "modal"} %>
 </div>
+
+
 <% end %>
