@@ -7,7 +7,24 @@ class DriversController < ApplicationController
   respond_to :html, :js
 
   def index
-    @drivers = Driver.paginate(page: params[:page], per_page: 30).order('created_at DESC')
+    @sort = params[:sort] ? params[:sort] : "created_at"
+    @direction = params[:direction] ? params[:direction] : "desc"
+
+    case @sort
+    when "is_active"
+      @drivers = Driver.paginate(page: params[:page], per_page: 30).order("is_active #{@direction}")
+    when "name"
+      @drivers = Driver.paginate(page: params[:page], per_page: 30).order("first_name #{@direction}, middle_name #{@direction}, last_name #{@direction}")
+    when "phone_number"
+      @drivers = Driver.joins(:address).paginate(page: params[:page], per_page: 30).order("phone_number #{@direction}")
+    when "location"
+      @drivers = Driver.joins(:location).paginate(page: params[:page], per_page: 30).order("location_name #{@direction}")
+    when "trips"
+      # TODO: sort by total trips
+      @drivers = Driver.paginate(page: params[:page], per_page: 30).order("#{@sort} #{@direction}")
+    else
+      @drivers = Driver.paginate(page: params[:page], per_page: 30).order("#{@sort} #{@direction}")
+    end
   end
 
   def show

@@ -10,11 +10,56 @@
         <table id="drivers-list"class="striped">
           <thead>
             <tr>
-              <th>Active</th>
-              <th>Name</th>
-              <th>Phone Number</th>
-              <th>Location</th>
-              <th>Trips</th>
+              <th>
+                <%= link_to "Active", "#{drivers_path()}?page=#{@drivers.current_page}&sort=is_active" %>
+                <% if @sort == "is_active" %>
+                  <% if @direction == "desc" %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_down</i>"), "#{drivers_path()}?page=#{@drivers.current_page}&sort=is_active&direction=asc" %>
+                  <% else %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_up</i>"), "#{drivers_path()}?page=#{@drivers.current_page}&sort=is_active&direction=desc" %>
+                  <% end %>
+                <% end %>
+              </th>
+              <th>
+                <%= link_to "Name", "#{drivers_path()}?page=#{@drivers.current_page}&sort=name" %>
+                <% if @sort == "name" %>
+                  <% if @direction == "desc" %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_down</i>"), "#{drivers_path()}?page=#{@drivers.current_page}&sort=name&direction=asc" %>
+                  <% else %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_up</i>"), "#{drivers_path()}?page=#{@drivers.current_page}&sort=name&direction=desc" %>
+                  <% end %>
+                <% end %>
+              </th>
+              <th>
+                <%= link_to "Phone Number", "#{drivers_path()}?page=#{@drivers.current_page}&sort=phone_number" %>
+                <% if @sort == "phone_number" %>
+                  <% if @direction == "desc" %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_down</i>"), "#{drivers_path()}?page=#{@drivers.current_page}&sort=phone_number&direction=asc" %>
+                  <% else %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_up</i>"), "#{drivers_path()}?page=#{@drivers.current_page}&sort=phone_number&direction=desc" %>
+                  <% end %>
+                <% end %>
+              </th>
+              <th>
+                <%= link_to "Location", "#{drivers_path()}?page=#{@drivers.current_page}&sort=location" %>
+                <% if @sort == "location" %>
+                  <% if @direction == "desc" %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_down</i>"), "#{drivers_path()}?page=#{@drivers.current_page}&sort=location&direction=asc" %>
+                  <% else %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_up</i>"), "#{drivers_path()}?page=#{@drivers.current_page}&sort=location&direction=desc" %>
+                  <% end %>
+                <% end %>
+              </th>
+              <th>
+                <%= link_to "Trips", "#{drivers_path()}?page=#{@drivers.current_page}&sort=trips" %>
+                <% if @sort == "trips" %>
+                  <% if @direction == "desc" %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_down</i>"), "#{drivers_path()}?page=#{@drivers.current_page}&sort=trips&direction=asc" %>
+                  <% else %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_up</i>"), "#{drivers_path()}?page=#{@drivers.current_page}&sort=trips&direction=desc" %>
+                  <% end %>
+                <% end %>
+              </th>
               <th></th>
             </tr>
           </thead>
@@ -24,7 +69,7 @@
           </tbody>
           <tfoot>
             <tr>
-              <td colspan="3">
+              <td colspan="5">
                 <%= page_navigation_links @drivers %>
               </td>
             </tr>
