@@ -4,6 +4,6 @@ $("ul.errors").html("")
     $("ul.errors").append($("<li/>").html("<%= message.html_safe %>"))
   <% end %>
 <% else %>
-  $("#emergency-contacts-list tbody").html("<%= escape_javascript(render 'index') %>")
+  $("#emergency-contacts-list tbody").html("<%= escape_javascript(render 'item') %>")
   $("#emergency-contact-modal").closeModal()
 <% end %>

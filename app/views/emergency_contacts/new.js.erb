@@ -1,2 +1,6 @@
 $("#emergency-contact-modal").html("<%= escape_javascript(render 'new') %>")
-$("#emergency-contact-modal").openModal()
+$("#emergency-contact-modal").openModal({
+  ready: function(){
+    $('.input-field select').material_select()
+  }
+})

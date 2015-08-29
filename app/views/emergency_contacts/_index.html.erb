@@ -1,37 +1,17 @@
-<main>
-  <div class="container">
-    <div class="row">
-      <div class="col s12">
+<table id="emergency-contacts-list" class="striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Relationship</th>
+      <th>Phone Number</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render "/emergency_contacts/item" %>
+  </tbody>
+</table>
 
-        <p id="notice"><%= notice %></p>
-
-        <h4><%= "#{@driver.first_name}'s Emergency Contacts" %></h4>
-
-        <table id="emergency-contacts-list" class="striped">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Relationship</th>
-              <th>Phone Number</th>
-              <th></th>
-            </tr>
-          </thead><tbody>
-            <%= render "/emergency_contacts/item" %>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="3">
-                <%= page_navigation_links @emergency_contacts %>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-
-      </div>
-    </div>
-  </div>
-</main>
-
-<%= link_to raw('<i class="material-icons">add</i>'), new_emergency_contact_path, remote: true, class: "btn-floating btn-large waves-effect waves-light yellow darken-2 black-text action-button"%>
+<%= link_to raw('<i class="material-icons">add</i>'), new_driver_contact_path(@driver), remote: true, class: "btn-floating btn-large waves-effect waves-light yellow darken-2 black-text action-button"%>
 
 <div id="emergency-contact-modal" class="modal"></div>

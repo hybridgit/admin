@@ -54,46 +54,52 @@
 
     <h5>Address</h5>
     <div class="divider"></div>
-
+    <%= f.fields_for :address do |a_form| %>
     <div class="row">
       <div class="col s6">
         <div class="input-field">
-          <%= f.label :city, class: @active_class %>
-          <input id="address-city" name="address[city]" type="text" />
+          <%= a_form.label :city, class: @active_class %>
+          <%= a_form.text_field :city %>
+          <!-- <input id="address-city" name="address[city]" type="text" /> -->
         </div>
       </div>
       <div class="col s6">
         <div class="input-field">
-          <%= f.label :sub_city, class: @active_class %>
-          <input id="address-sub-city" name="address[sub_city]" type="text" />
+          <%= a_form.label :sub_city, class: @active_class %>
+          <%= a_form.text_field :sub_city %>
+          <!-- <input id="address-sub-city" name="address[sub_city]" type="text" /> -->
         </div>
       </div>
       <div class="col s6">
         <div class="input-field">
-          <%= f.label :woreda, class: @active_class %>
-          <input id="address-woreda" name="address[woreda]" type="text" />
+          <%= a_form.label :woreda, class: @active_class %>
+          <%= a_form.text_field :woreda %>
+          <!-- <input id="address-woreda" name="address[woreda]" type="text" /> -->
         </div>
       </div>
       <div class="col s6">
         <div class="input-field">
-          <%= f.label :kebele, class: @active_class %>
-          <input id="address-kebele" name="address[kebele]" type="text" />
+          <%= a_form.label :kebele, class: @active_class %>
+          <%= a_form.text_field :kebele %>
+          <!-- <input id="address-kebele" name="address[kebele]" type="text" /> -->
         </div>
       </div>
       <div class="col s6">
         <div class="input-field">
-          <%= f.label :house_number, class: @active_class %>
-          <input id="address-house-number" name="address[house_number]" type="text" />
+          <%= a_form.label :house_number, class: @active_class %>
+          <%= a_form.text_field :house_number %>
+          <!-- <input id="address-house-number" name="address[house_number]" type="text" /> -->
         </div>
       </div>
       <div class="col s6">
         <div class="input-field">
-          <%= f.label :phone_number, class: @active_class %>
-          <input id="address-phone-number" name="address[phone_number]" type="text" />
+          <%= a_form.label :phone_number, class: @active_class %>
+          <%= a_form.text_field :phone_number %>
+          <!-- <input id="address-phone-number" name="address[phone_number]" type="text" /> -->
         </div>
       </div>
     </div>
-
+    <% end %>
   </div>
 
 </div>

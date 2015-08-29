@@ -1,11 +1,14 @@
-<%= form_for(@emergency_contact, remote: true) do |f| %>
-<% @active_class = @emergency_contact.id ? "active" : "" %>
+<%= form_for(@emergency_contact, url: driver_contacts_path(@driver), method: :post, remote: true) do |f| %>
+
 <div class="modal-content">
   <ul class="errors"></ul>
   <div class="row">
     <div class="col s12">
       <div class="input-field">
-        <%= f.label :name, class: @active_class %><br>
+        <%= f.hidden_field :driver_id, value: @driver.id %>
+      </div>
+      <div class="input-field">
+        <%= f.label :name %><br>
         <%= f.text_field :name %>
       </div>
     </div>
@@ -17,7 +20,7 @@
     </div>
     <div class="col s12">
       <div class="input-field">
-        <%= f.label :phone_number, class: @active_class %><br>
+        <%= f.label :phone_number %><br>
         <%= f.text_field :phone_number %>
       </div>
     </div>

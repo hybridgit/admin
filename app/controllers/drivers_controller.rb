@@ -12,6 +12,7 @@ class DriversController < ApplicationController
 
   def show
     @driver = Driver.find(params[:id])
+    @emergency_contacts = EmergencyContact.find_by_driver_id @driver.id
   end
 
   def new
@@ -32,25 +33,21 @@ class DriversController < ApplicationController
   end
 
   def create
-    @driver = Driver.create(params[:driver])
-    #@address = Address.create(params[:address])
-    @driver.build_address(params[:address])
-    @driver.save
+    @driver = Driver.new(driver_params)
 
-    redirect_to @driver, notice: 'Driver was successfully created.'
-
-    # respond_to do |format|
-    #   if @driver.save
-    #     format.html { redirect_to @driver, notice: 'Driver was successfully created.' }
-    #     format.js { render :show, status: :created, location: @driver }
-    #   else
-    #     format.html { render :new }
-    #     format.js { render json: @driver.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      if @driver.save
+        format.html { redirect_to @driver, notice: 'Driver was successfully created.' }
+      else
+        format.html { render :new }
+      end
+    end
   end
 
   def update
+    @driver = Driver.find(params[:id])
+    @driver.update_attributes(driver_params)
+
     respond_to do |format|
       if @driver.update(driver_params)
         format.html { redirect_to @driver, notice: 'Driver was successfully updated.' }
@@ -76,6 +73,16 @@ class DriversController < ApplicationController
     rescue ActiveRecord::DeleteRestrictionError => e
       @error = e.message
     end
+  end
+
+  private
+  def driver_params
+    params.require(:driver).permit(
+      :id, :location_id, :address_id, :car_type_id, :contact_method_id, :operation_hour_id,
+      :first_name, :last_name, :middle_name, :drivers_license_id, :date_of_birth,
+      :profile_image, :drivers_license_copy, :is_active,
+      address_attributes: [:id, :city, :sub_city, :woreda, :kebele, :house_number, :phone_number ]
+    )
   end
 
 end

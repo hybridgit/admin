@@ -1,7 +1,7 @@
 class Driver < ActiveRecord::Base
   attr_accessible :id, :location_id, :address_id, :car_type_id, :contact_method_id, :operation_hour_id,
                   :first_name, :last_name, :middle_name, :drivers_license_id, :date_of_birth,
-                  :profile_image, :drivers_license_copy, :is_active
+                  :profile_image, :drivers_license_copy, :is_active, :address_attributes
 
   has_one :address, :dependent => :destroy
   has_many :emergency_contacts, :dependent => :destroy

@@ -10,7 +10,7 @@ class EmergencyContactsController < ApplicationController
   # GET /emergency_contacts.js
 
   def index
-    @driver = Driver.find(params[:driver_id])
+    @driver = Driver.find(params[:id])
   end
 
   # GET /emergency_contacts/new
