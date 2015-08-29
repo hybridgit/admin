@@ -75,6 +75,19 @@ class DriversController < ApplicationController
     end
   end
 
+  def activate
+    @driver = Driver.find(params[:id])
+    @driver.update_attributes({is_active: params[:is_active]})
+    @response = {
+      status: @driver.is_active? ,
+      driver: @driver.display_field
+    }
+
+    respond_to do |format|
+      format.json { render :json => @response }
+    end
+  end
+
   private
   def driver_params
     params.require(:driver).permit(

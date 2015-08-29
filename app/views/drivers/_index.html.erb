@@ -1,8 +1,8 @@
 <% @drivers.each do |driver| %>
   <tr>
-    <td>
-      <input type="checkbox" id='<%= "a-#{driver.id}" %>' <%= "checked='checked'" if driver.is_active? %> />
-      <label for='<%= "a-#{driver.id}"%>' ></label>
+    <td class="center-align">
+      <input type="checkbox" id="<%= driver.id %>" value='<%= driver.id %>' <%= "checked='checked'" if driver.is_active? %> />
+      <label for='<%= driver.id %>' ></label>
     </td>
     <td><%= link_to driver.display_field, driver %></td>
     <td><%= link_to driver.phone_number, driver %></td>

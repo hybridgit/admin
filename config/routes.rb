@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     end
   end
 
+
+  get "drivers/:id/activate", to: "drivers#activate"
   resources :drivers do
     get "delete"
     resources :emergency_contacts, :as => :contacts do
