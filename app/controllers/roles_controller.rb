@@ -9,7 +9,7 @@ class RolesController < ApplicationController
   # GET /roles
   # GET /roles.js
   def index
-    @roles = Role.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+    @roles = Role.paginate(:page => params[:page], :per_page => 5).order('updated_at DESC')
   end
 
   # GET /roles/1
@@ -32,7 +32,7 @@ class RolesController < ApplicationController
   # POST /roles
   # POST /roles.js
   def create
-    @roles = Role.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+    @roles = Role.paginate(:page => params[:page], :per_page => 5).order('updated_at DESC')
     @role = Role.create(params[:role])
   end
 
@@ -41,7 +41,7 @@ class RolesController < ApplicationController
   def update
     @role = Role.find(params[:id])
     @role.update_attributes(params[:role])
-    @roles = Role.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+    @roles = Role.paginate(:page => params[:page], :per_page => 5).order('updated_at DESC')
   end
 
   # GET /user/1/delete
@@ -53,7 +53,7 @@ class RolesController < ApplicationController
   # DELETE /roles/1
   # DELETE /roles/1.js
   def destroy
-    @roles = Role.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+    @roles = Role.paginate(:page => params[:page], :per_page => 5).order('updated_at DESC')
     @role = Role.find(params[:id])
     @error = nil
     unless @role.name == "Administrator"

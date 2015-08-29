@@ -10,7 +10,7 @@ class RelationshipsController < ApplicationController
   # GET /relationships.js
 
   def index
-    @relationships = Relationship.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    @relationships = Relationship.paginate(:page => params[:page], :per_page => 30).order('updated_at DESC')
   end
 
   # GET /relationships/1
@@ -33,7 +33,7 @@ class RelationshipsController < ApplicationController
   # POST /relationships.js
 
   def create
-    @relationships = Relationship.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    @relationships = Relationship.paginate(:page => params[:page], :per_page => 30).order('updated_at DESC')
     @relationship = Relationship.create(params[:relationship])
   end
 
@@ -42,7 +42,7 @@ class RelationshipsController < ApplicationController
   def update
     @relationship = Relationship.find(params[:id])
     @relationship.update_attributes(params[:relationship])
-    @relationships = Relationship.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    @relationships = Relationship.paginate(:page => params[:page], :per_page => 30).order('updated_at DESC')
   end
 
   # GET /relationship/1/delete
@@ -54,7 +54,7 @@ class RelationshipsController < ApplicationController
   # DELETE /relationships/1
   # DELETE /relationships/1.json
   def destroy
-    @relationships = Relationship.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    @relationships = Relationship.paginate(:page => params[:page], :per_page => 30).order('updated_at DESC')
     @relationship = Relationship.find(params[:id])
     @error = nil
 

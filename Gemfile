@@ -41,6 +41,9 @@ gem 'responders', '~> 2.0'
 # For file upload
 gem 'paperclip', '~> 4.3.0'
 
+# For Excel spreadsheets manipulation
+gem 'roo', '~> 1.13.2'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

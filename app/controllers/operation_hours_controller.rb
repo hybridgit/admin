@@ -10,7 +10,7 @@ class OperationHoursController < ApplicationController
   # GET /operation_hours.js
 
   def index
-    @operation_hours = OperationHour.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    @operation_hours = OperationHour.paginate(:page => params[:page], :per_page => 30).order('updated_at DESC')
   end
 
   # GET /operation_hours/1
@@ -33,7 +33,7 @@ class OperationHoursController < ApplicationController
   # POST /operation_hours.js
 
   def create
-    @operation_hours = OperationHour.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    @operation_hours = OperationHour.paginate(:page => params[:page], :per_page => 30).order('updated_at DESC')
     @operation_hour = OperationHour.create(params[:operation_hour])
   end
 
@@ -42,7 +42,7 @@ class OperationHoursController < ApplicationController
   def update
     @operation_hour = OperationHour.find(params[:id])
     @operation_hour.update_attributes(params[:operation_hour])
-    @operation_hours = OperationHour.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    @operation_hours = OperationHour.paginate(:page => params[:page], :per_page => 30).order('updated_at DESC')
   end
 
   # GET /operation_hour/1/delete
@@ -54,7 +54,7 @@ class OperationHoursController < ApplicationController
   # DELETE /operation_hours/1
   # DELETE /operation_hours/1.json
   def destroy
-    @operation_hours = OperationHour.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    @operation_hours = OperationHour.paginate(:page => params[:page], :per_page => 30).order('updated_at DESC')
     @operation_hour = OperationHour.find(params[:id])
     @error = nil
 

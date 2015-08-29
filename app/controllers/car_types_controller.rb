@@ -9,7 +9,7 @@ class CarTypesController < ApplicationController
   # GET /car_types
   # GET /car_types.js
   def index
-    @car_types = CarType.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    @car_types = CarType.paginate(:page => params[:page], :per_page => 30).order('updated_at DESC')
   end
 
   # GET /car_types/1
@@ -32,7 +32,7 @@ class CarTypesController < ApplicationController
   # POST /car_types.js
 
   def create
-    @car_types = CarType.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    @car_types = CarType.paginate(:page => params[:page], :per_page => 30).order('updated_at DESC')
     @car_type = CarType.create(params[:car_type])
   end
 
@@ -41,7 +41,7 @@ class CarTypesController < ApplicationController
   def update
     @car_type = CarType.find(params[:id])
     @car_type.update_attributes(params[:car_type])
-    @car_types = CarType.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    @car_types = CarType.paginate(:page => params[:page], :per_page => 30).order('updated_at DESC')
   end
 
   # GET /car_type/1/delete
@@ -53,7 +53,7 @@ class CarTypesController < ApplicationController
   # DELETE /car_types/1
   # DELETE /car_types/1.json
   def destroy
-    @car_types = CarType.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+    @car_types = CarType.paginate(:page => params[:page], :per_page => 5).order('updated_at DESC')
     @car_type = CarType.find(params[:id])
     @error = nil
 

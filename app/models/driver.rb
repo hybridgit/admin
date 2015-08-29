@@ -5,6 +5,7 @@ class Driver < ActiveRecord::Base
 
   has_one :address, :dependent => :destroy
   has_many :emergency_contacts, :dependent => :destroy
+  has_many :cab_requests, :dependent => :destroy
   belongs_to :location
   belongs_to :car_type
   belongs_to :contact_method

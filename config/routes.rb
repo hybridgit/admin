@@ -34,6 +34,14 @@ Rails.application.routes.draw do
     end
   end
 
+  get "locations/import", to: "locations#import"
+  post "locations/upload", to: "locations#upload"
+  resources :locations do
+    get "delete"
+  end
+
+  get  'cab_requests/receive_sms' => 'cab_requests#receive_sms'
+  resources :cab_requests
 
   get "drivers/:id/activate", to: "drivers#activate"
   resources :drivers do

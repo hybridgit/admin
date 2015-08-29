@@ -7,7 +7,7 @@ class DriversController < ApplicationController
   respond_to :html, :js
 
   def index
-    @sort = params[:sort] ? params[:sort] : "created_at"
+    @sort = params[:sort] ? params[:sort] : "updated_at"
     @direction = params[:direction] ? params[:direction] : "desc"
 
     case @sort
@@ -81,7 +81,7 @@ class DriversController < ApplicationController
   end
 
   def destroy
-    @drivers = Driver.paginate(page: params[:page], per_page: 30).order('created_at DESC')
+    @drivers = Driver.paginate(page: params[:page], per_page: 30).order('updated_at DESC')
     @driver = Driver.find(params[:id])
     @error = nil
 

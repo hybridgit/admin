@@ -1,0 +1,38 @@
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+
+        <p id="notice"><%= notice %></p>
+
+        <h4>Locations</h4>
+
+        <table id="locations-list" class="table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render "index" %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4">
+                <%= page_navigation_links @locations %>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<%= link_to raw('<i class="material-icons">add</i>'), new_location_path, remote: true, class: "btn-floating btn-large waves-effect waves-light yellow darken-2 black-text action-button"%>
+
+<div id="location-modal" class="modal"></div>

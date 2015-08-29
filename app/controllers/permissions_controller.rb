@@ -9,7 +9,7 @@ class PermissionsController < ApplicationController
   # GET /permissions
   # GET /permissions.js
   def index
-    @permissions = Permission.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+    @permissions = Permission.paginate(:page => params[:page], :per_page => 10).order('updated_at DESC')
   end
 
   # GET /permissions/1
@@ -34,7 +34,7 @@ class PermissionsController < ApplicationController
   # POST /permissions
   # POST /permissions.js
   def create
-    @permissions = Permission.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+    @permissions = Permission.paginate(:page => params[:page], :per_page => 10).order('updated_at DESC')
     @permission = Permission.create(params[:permission])
   end
 
@@ -43,7 +43,7 @@ class PermissionsController < ApplicationController
   def update
     @permission = Permission.find(params[:id])
     @permission.update_attributes(params[:permission])
-    @permissions = Permission.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+    @permissions = Permission.paginate(:page => params[:page], :per_page => 10).order('updated_at DESC')
   end
 
   # GET /permission/1/delete
@@ -65,7 +65,7 @@ class PermissionsController < ApplicationController
   # DELETE /permissions/1
   # DELETE /permissions/1.js
   def destroy
-    @permissions = Permission.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+    @permissions = Permission.paginate(:page => params[:page], :per_page => 10).order('updated_at DESC')
     @permission = Permission.find(params[:id])
     @error = nil
 

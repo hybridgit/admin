@@ -10,7 +10,7 @@ class AddressesController < ApplicationController
   # GET /addresses.js
 
   def index
-    @addresses = Address.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    @addresses = Address.paginate(:page => params[:page], :per_page => 30).order('updated_at DESC')
   end
 
   # GET /addresses/1
@@ -33,7 +33,7 @@ class AddressesController < ApplicationController
   # POST /addresses.js
 
   def create
-    @addresses = Address.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    @addresses = Address.paginate(:page => params[:page], :per_page => 30).order('updated_at DESC')
     @address = Address.create(params[:address])
   end
 
@@ -42,7 +42,7 @@ class AddressesController < ApplicationController
   def update
     @address = Address.find(params[:id])
     @address.update_attributes(params[:address])
-    @addresses = Address.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    @addresses = Address.paginate(:page => params[:page], :per_page => 30).order('updated_at DESC')
   end
 
   # GET /address/1/delete
@@ -54,7 +54,7 @@ class AddressesController < ApplicationController
   # DELETE /addresses/1
   # DELETE /addresses/1.json
   def destroy
-    @addresses = Address.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+    @addresses = Address.paginate(:page => params[:page], :per_page => 5).order('updated_at DESC')
     @address = Address.find(params[:id])
     @error = nil
 

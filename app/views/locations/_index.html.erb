@@ -1,0 +1,11 @@
+<% @locations.each do |location| %>
+<tr>
+  <td><%= location.location_name %></td>
+  <td><%= location.latitude %></td>
+  <td><%= location.longitude %></td>
+  <td class="actions">
+    <%= link_to raw("<i class='material-icons circle'>mode_edit</i>"), edit_location_path(location), remote: true %>
+    <%= link_to raw("<i class='material-icons circle'>cancel</i>"), location_delete_path(location), remote: true %>
+  </td>
+</tr>
+<% end %>

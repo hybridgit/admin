@@ -1,0 +1,37 @@
+<%= @message %><br>
+
+<% if @location_to_confirm.present? %>
+<%= @location_to_confirm %><br>
+<% end %>
+
+<% if @more_location_options.present? %>
+<% @more_location_options.each_with_index do | option, index | %>
+<% @option=option["address_components"] %>
+<% @name="" %>
+<%= (index+1).to_s+"- " %>
+<% @option.each do |comp| %>
+
+<%= comp["long_name"] + " " %>
+<% end %>
+<br>
+<% end %>
+<% end %>
+
+<% if @drivers.present? %>
+Nearest five driver numbers for testing<br>
+<% @drivers.each_with_index do |driver,index| %>
+<%= (index+1).to_s+"- "+driver.cell_no %><br>
+<%end %>
+<%end %>
+
+ <%= form_tag new_cab_request_path, :method=>'Get' do %>
+
+      <%= label_tag :cell %>
+      <%= text_field_tag :user_cell_no%>
+
+      <%= label_tag :string %>
+      <%= text_field_tag :location %>
+
+      <%= submit_tag "Send", class: "btn btn-large btn-primary" %>
+<% end %>
+

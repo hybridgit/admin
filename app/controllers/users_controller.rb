@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.js
   def index
-    @users = User.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+    @users = User.paginate(:page => params[:page], :per_page => 5).order('updated_at DESC')
   end
 
   # GET /users/1
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.js
   def create
-    @users = User.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+    @users = User.paginate(:page => params[:page], :per_page => 5).order('updated_at DESC')
     @user = User.create(params[:user])
   end
 
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update_attributes(params[:user])
-    @users = User.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+    @users = User.paginate(:page => params[:page], :per_page => 5).order('updated_at DESC')
   end
 
   # GET /user/1/delete
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.js
   def destroy
-    @users = User.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+    @users = User.paginate(:page => params[:page], :per_page => 5).order('updated_at DESC')
     @user = User.find(params[:id])
     @error = nil
 
