@@ -43,8 +43,8 @@ Rails.application.routes.draw do
   get  'cab_requests/receive_sms' => 'cab_requests#receive_sms'
   resources :cab_requests
 
-  get "drivers/:id/activate", to: "drivers#activate"
-  resources :drivers do
+  get "profiles/:id/activate", to: "profiles#activate"
+  resources :profiles do
     get "delete"
     resources :emergency_contacts, :as => :contacts do
       get "delete"

@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  driver_id: 1
+  address_id: 1
+  car_type_id: 1
+  contact_method_id: 1
+  operation_hour_id: 1
+  first_name: MyString
+  last_name: MyString
+  middle_name: MyString
+  drivers_license_id: 1
+  date_of_birth: 2015-08-30
+  is_active: false
+
+two:
+  driver_id: 1
+  address_id: 1
+  car_type_id: 1
+  contact_method_id: 1
+  operation_hour_id: 1
+  first_name: MyString
+  last_name: MyString
+  middle_name: MyString
+  drivers_license_id: 1
+  date_of_birth: 2015-08-30
+  is_active: false

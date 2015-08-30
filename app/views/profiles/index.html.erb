@@ -1,0 +1,85 @@
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+
+        <p id="notice"><%= notice %></p>
+
+        <h4>Profiles</h4>
+
+        <table id="profiles-list"class="striped">
+          <thead>
+            <tr>
+              <th>
+                <%= link_to "Active", "#{profiles_path()}?page=#{@profiles.current_page}&sort=is_active" %>
+                <% if @sort == "is_active" %>
+                  <% if @direction == "desc" %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_down</i>"), "#{profiles_path()}?page=#{@profiles.current_page}&sort=is_active&direction=asc" %>
+                  <% else %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_up</i>"), "#{profiles_path()}?page=#{@profiles.current_page}&sort=is_active&direction=desc" %>
+                  <% end %>
+                <% end %>
+              </th>
+              <th>
+                <%= link_to "Name", "#{profiles_path()}?page=#{@profiles.current_page}&sort=name" %>
+                <% if @sort == "name" %>
+                  <% if @direction == "desc" %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_down</i>"), "#{profiles_path()}?page=#{@profiles.current_page}&sort=name&direction=asc" %>
+                  <% else %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_up</i>"), "#{profiles_path()}?page=#{@profiles.current_page}&sort=name&direction=desc" %>
+                  <% end %>
+                <% end %>
+              </th>
+              <th>
+                <%= link_to "Phone Number", "#{profiles_path()}?page=#{@profiles.current_page}&sort=phone_number" %>
+                <% if @sort == "phone_number" %>
+                  <% if @direction == "desc" %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_down</i>"), "#{profiles_path()}?page=#{@profiles.current_page}&sort=phone_number&direction=asc" %>
+                  <% else %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_up</i>"), "#{profiles_path()}?page=#{@profiles.current_page}&sort=phone_number&direction=desc" %>
+                  <% end %>
+                <% end %>
+              </th>
+              <th>
+                <%= link_to "Location", "#{profiles_path()}?page=#{@profiles.current_page}&sort=location" %>
+                <% if @sort == "location" %>
+                  <% if @direction == "desc" %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_down</i>"), "#{profiles_path()}?page=#{@profiles.current_page}&sort=location&direction=asc" %>
+                  <% else %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_up</i>"), "#{profiles_path()}?page=#{@profiles.current_page}&sort=location&direction=desc" %>
+                  <% end %>
+                <% end %>
+              </th>
+              <th>
+                <%= link_to "Trips", "#{profiles_path()}?page=#{@profiles.current_page}&sort=trips" %>
+                <% if @sort == "trips" %>
+                  <% if @direction == "desc" %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_down</i>"), "#{profiles_path()}?page=#{@profiles.current_page}&sort=trips&direction=asc" %>
+                  <% else %>
+                    <%= link_to raw("<i class='material-icons'>keyboard_arrow_up</i>"), "#{profiles_path()}?page=#{@profiles.current_page}&sort=trips&direction=desc" %>
+                  <% end %>
+                <% end %>
+              </th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render "index" %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">
+                <%= page_navigation_links @profiles %>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<%= link_to raw('<i class="material-icons">add</i>'), new_profile_path, class: "btn-floating btn-large waves-effect waves-light yellow darken-2 black-text action-button"%>
+
+<div id="profile-modal" class="modal"></div>

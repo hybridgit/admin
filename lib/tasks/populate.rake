@@ -44,9 +44,24 @@ namespace :db do
     puts "Locations Added"
 
     # Add Drivers
-    200.times do
-      @driver_attr = {
-        location_id: Faker::Base.rand_in_range(1, 200),
+    Driver.populate 200 do |driver|
+      driver.name = Faker::Name.name
+      driver.cell_no = Faker::PhoneNumber.phone_number
+      driver.location = Faker::Lorem.sentence(word_count = 5, supplemental = false, random_words_to_add = 3)
+      # Limit latitude from the South and North of Addis Ababa
+      driver.location_lat = Float(Faker::Number.between(from = 8.840921, to = 9.089721)).round(6)
+      # Limit longitude from the West and the East of Addis Ababa
+      driver.location_long = Float(Faker::Number.between(from = 38.659911, to = 38.915183)).round(6)
+
+      driver.created_at = Faker::Date.between(from = Date.today - 3.months, to = Date.today)
+    end
+
+    puts "Drivers Added"
+
+    # Add Drivers
+    200.times do |i|
+      @profile_attr = {
+        driver_id: i+1,
         car_type_id: Faker::Base.rand_in_range(1, 2),
         contact_method_id: Faker::Base.rand_in_range(1, 3),
         operation_hour_id: Faker::Base.rand_in_range(1, 2),
@@ -57,7 +72,7 @@ namespace :db do
         date_of_birth: Faker::Time.between(70.years.ago, 18.years.ago, :all),
         is_active: Faker::Number.between(1, 10) % 2 == 0 ? true : false
       }
-      @driver = Driver.new(@driver_attr)
+      @profile = Profile.new(@profile_attr)
       @address_attr = {
         city: Faker::Address.city,
         sub_city: Faker::Address.street_name,
@@ -66,7 +81,12 @@ namespace :db do
         house_number: "#{Faker::Number.number(4)}",
         phone_number: Faker::PhoneNumber.phone_number
       }
-      @driver.build_address(@address_attr)
+      @profile.build_address(@address_attr)
+      @profile.save
+
+      # Also update Driver
+      @driver = Driver.find(@profile.driver_id)
+      @driver.profile_id = @profile.id
       @driver.save
     end
 

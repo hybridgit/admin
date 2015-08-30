@@ -1,0 +1,16 @@
+<% @profiles.each do |profile| %>
+  <tr>
+    <td class="center-align">
+      <input type="checkbox" id="<%= profile.id %>" value='<%= profile.id %>' <%= "checked='checked'" if profile.is_active? %> />
+      <label for='<%= profile.id %>' ></label>
+    </td>
+    <td><%= link_to profile.display_field, profile %></td>
+    <td><%= link_to profile.phone_number, profile %></td>
+    <td><%= link_to profile.location_name, profile %></td>
+    <td><%= link_to "0", profile %></td>
+    <td class="actions right-align">
+      <%= link_to raw("<i class='material-icons circle'>mode_edit</i>"), edit_profile_path(profile) %>
+      <%= link_to raw("<i class='material-icons circle'>cancel</i>"), profile_delete_path(profile), remote: true %>
+    </td>
+  </tr>
+<% end %>

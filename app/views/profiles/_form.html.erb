@@ -1,11 +1,15 @@
 
-<%= form_for(@driver,  html: { multipart: true }) do |f| %>
-<% @active_class = @driver.id ? "active" : "" %>
+<%= form_for(@profile,  html: { multipart: true }) do |f| %>
+<% @active_class = @profile.id ? "active" : "" %>
 
 <ul class="errors"></ul>
 <div class="row">
 
   <div class="col s6">
+    <div class="input-field select-field">
+      <%= f.collection_select(:driver_id, @drivers, :id, :name, {:prompt => true}) %>
+      <%= f.label :driver_id %>
+    </div>
     <div class="input-field">
       <%= f.file_field :profile_image %>
     </div>
@@ -46,10 +50,6 @@
     <div class="input-field select-field">
       <%= f.collection_select(:contact_method_id, @contact_methods, :id, :name, {:prompt => true}) %>
       <%= f.label :contact_method_id %>
-    </div>
-    <div class="input-field select-field">
-      <%= f.collection_select(:location_id, @locations, :id, :location_name, {:prompt => true}) %>
-      <%= f.label :location_id %>
     </div>
 
     <h5>Address</h5>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828163134) do
+ActiveRecord::Schema.define(version: 20150830162932) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "city",         limit: 255
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150828163134) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.string   "phone_number", limit: 255
-    t.integer  "driver_id",    limit: 4
+    t.integer  "profile_id",   limit: 4
   end
 
   create_table "cab_requests", force: :cascade do |t|
@@ -56,27 +56,14 @@ ActiveRecord::Schema.define(version: 20150828163134) do
   end
 
   create_table "drivers", force: :cascade do |t|
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
-    t.integer  "location_id",                       limit: 4
-    t.integer  "address_id",                        limit: 4
-    t.integer  "car_type_id",                       limit: 4
-    t.integer  "contact_method_id",                 limit: 4
-    t.integer  "operation_hour_id",                 limit: 4
-    t.string   "first_name",                        limit: 255
-    t.string   "last_name",                         limit: 255
-    t.string   "middle_name",                       limit: 255
-    t.string   "drivers_license_id",                limit: 255
-    t.date     "date_of_birth"
-    t.string   "profile_image_file_name",           limit: 255
-    t.string   "profile_image_content_type",        limit: 255
-    t.integer  "profile_image_file_size",           limit: 4
-    t.datetime "profile_image_updated_at"
-    t.string   "drivers_license_copy_file_name",    limit: 255
-    t.string   "drivers_license_copy_content_type", limit: 255
-    t.integer  "drivers_license_copy_file_size",    limit: 4
-    t.datetime "drivers_license_copy_updated_at"
-    t.boolean  "is_active"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "profile_id",    limit: 4
+    t.string   "name",          limit: 255
+    t.string   "cell_no",       limit: 255
+    t.string   "location",      limit: 255
+    t.string   "location_lat",  limit: 255
+    t.string   "location_long", limit: 255
   end
 
   create_table "emergency_contacts", force: :cascade do |t|
@@ -85,7 +72,7 @@ ActiveRecord::Schema.define(version: 20150828163134) do
     t.string   "phone_number",    limit: 255
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.integer  "driver_id",       limit: 4
+    t.integer  "profile_id",      limit: 4
   end
 
   create_table "locations", force: :cascade do |t|
@@ -107,6 +94,30 @@ ActiveRecord::Schema.define(version: 20150828163134) do
     t.string   "action",     limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "driver_id",                         limit: 4
+    t.integer  "address_id",                        limit: 4
+    t.integer  "car_type_id",                       limit: 4
+    t.integer  "contact_method_id",                 limit: 4
+    t.integer  "operation_hour_id",                 limit: 4
+    t.string   "first_name",                        limit: 255
+    t.string   "last_name",                         limit: 255
+    t.string   "middle_name",                       limit: 255
+    t.string   "drivers_license_id",                limit: 255
+    t.date     "date_of_birth"
+    t.boolean  "is_active"
+    t.string   "profile_image_file_name",           limit: 255
+    t.string   "profile_image_content_type",        limit: 255
+    t.integer  "profile_image_file_size",           limit: 4
+    t.datetime "profile_image_updated_at"
+    t.string   "drivers_license_copy_file_name",    limit: 255
+    t.string   "drivers_license_copy_content_type", limit: 255
+    t.integer  "drivers_license_copy_file_size",    limit: 4
+    t.datetime "drivers_license_copy_updated_at"
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
   end
 
   create_table "relationships", force: :cascade do |t|

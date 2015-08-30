@@ -8,88 +8,88 @@
     <div class="row">
       <div class="col s6">
         <p>
-          <%= image_tag @driver.profile_image.url(:thumb) %>
+          <%= image_tag @profile.profile_image.url(:thumb) %>
         </p>
         <p>
-          <%= image_tag @driver.drivers_license_copy.url(:thumb) %>
+          <%= image_tag @profile.drivers_license_copy.url(:thumb) %>
         </p>
       </div>
       <div class="col s6">
         <p>
           <strong>Name:</strong>
-          <%= @driver.display_field %>
+          <%= @profile.display_field %>
         </p>
         <p>
           <strong>Date of Birth:</strong>
-          <%= @driver.date_of_birth %>
+          <%= @profile.date_of_birth %>
         </p>
         <p>
           <strong>Drivers License:</strong>
-          <%= @driver.drivers_license_id %>
+          <%= @profile.drivers_license_id %>
         </p>
         <p>
           <strong>Car Type:</strong>
-          <%= @driver.car_type.name %>
+          <%= @profile.car_type.name %>
         </p>
         <p>
           <strong>Operation Hours:</strong>
-          <%= @driver.operation_hour.name %>
+          <%= @profile.operation_hour.name %>
         </p>
         <p>
           <strong>Contact Method:</strong>
-          <%= @driver.contact_method.name %>
+          <%= @profile.contact_method.name %>
         </p>
       </div>
     </div>
     <div class="row">
         <div class="col s12">
           <ul class="tabs">
-            <li class="tab col s4"><a class="active" href="#driver-address">Address</a></li>
-            <li class="tab col s4"><a href="#driver-location">Location</a></li>
-            <li class="tab col s4"><a href="#driver-emergency-contact">Contacts</a></li>
+            <li class="tab col s4"><a class="active" href="#profile-address">Address</a></li>
+            <li class="tab col s4"><a href="#profile-location">Location</a></li>
+            <li class="tab col s4"><a href="#profile-emergency-contact">Contacts</a></li>
           </ul>
         </div>
-        <div id="driver-address" class="col s12">
+        <div id="profile-address" class="col s12">
           <p>
             <strong>City:</strong>
-            <%= @driver.address.city %>
+            <%= @profile.address.city %>
           </p>
           <p>
             <strong>Sub City:</strong>
-            <%= @driver.address.sub_city %>
+            <%= @profile.address.sub_city %>
           </p>
           <p>
             <strong>Woreda:</strong>
-            <%= @driver.address.woreda %>
+            <%= @profile.address.woreda %>
           </p>
           <p>
             <strong>Kebele:</strong>
-            <%= @driver.address.kebele %>
+            <%= @profile.address.kebele %>
           </p>
           <p>
             <strong>House Number:</strong>
-            <%= @driver.address.house_number %>
+            <%= @profile.address.house_number %>
           </p>
           <p>
             <strong>Phone Number:</strong>
-            <%= @driver.address.phone_number %>
+            <%= @profile.address.phone_number %>
           </p>
         </div>
-        <div id="driver-location" class="col s12">
+        <div id="profile-location" class="col s12">
           <p>
             <strong>Location:</strong>
-            <%= @driver.location.location_name %>
+            <%#= @profile.driver.location %>
           </p>
           <p>
             <strong>Latitude:</strong>
-            <%= @driver.location.latitude %>
+            <%#= @profile.driver.location_lat %>
           </p>
           <p>
             <strong>Longitude:</strong>
-            <%= @driver.location.longitude %>
+            <%#= @profile.driver.location_long %>
           </p>
         </div>
-        <div id="driver-emergency-contact" class="col s12">
+        <div id="profile-emergency-contact" class="col s12">
           <%= render "/emergency_contacts/index" %>
         </div>
       </div>
