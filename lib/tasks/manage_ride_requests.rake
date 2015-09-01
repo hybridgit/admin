@@ -3,7 +3,7 @@ namespace :events do
   desc "Rake task to manage ride requests"
   task :fetch => :environment do
 
-    @short_code   = "+2518202"
+    @short_code   = "8202"
 
     @passed_time  = Time.now - 10.minutes
     puts "Check cab requests of 10 minutes old and not responded. Broadcasting to near drivers"
