@@ -1,6 +1,6 @@
 class AddColumnsToCabRequest < ActiveRecord::Migration
   def change
-    add_column :cab_requests, :current_dirver_id, :integer
+    add_column :cab_requests, :current_driver_id, :integer
     add_column :cab_requests, :customer_cell_no, :string
     add_column :cab_requests, :broadcast, :boolean
     add_column :cab_requests, :status, :boolean
