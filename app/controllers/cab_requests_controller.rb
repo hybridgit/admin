@@ -1,10 +1,6 @@
 class CabRequestsController < ApplicationController
   include HTTParty
   require 'json'
-  before_filter :authenticate
-  before_filter do |c|
-    c.send(:authorize, self.controller_name, self.action_name)
-  end
   API_BASE_URL = 'https://maps.googleapis.com/maps/api/geocode/json?address='
   APP_KEY= '&key=AIzaSyBe4SyPWoNw_RKyCMK5v_bCD5OE9kvlTGE'
 
@@ -294,7 +290,7 @@ class CabRequestsController < ApplicationController
     end
 
     def contact_nearby_drivers(cab_request)
-      @drivers = Driver.within(1, :units => :miles, :origin => [cab_request.latitude, cab_request.longitude])
+      @drivers = Driver.within(1, :units => :miles, :origin => [cab_request.location_lat, cab_request.location_long])
       #Testing
       # @drivers = Driver.where("cell_no IN ('+251929104455', '+251913135534', '+251938483821')")
       #Testing

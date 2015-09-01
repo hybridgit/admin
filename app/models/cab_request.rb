@@ -65,8 +65,8 @@ class CabRequest < ActiveRecord::Base
   public
     def register_request(customer_cell_no, lat, long, location)
     	self.customer_cell_no    = customer_cell_no
-    	self.latitude            = lat
-    	self.longitude           = long
+    	self.location_lat            = lat
+    	self.location_long           = long
     	self.location            = location
     	self.status              = false
     	self.broadcast           = false
@@ -81,7 +81,7 @@ class CabRequest < ActiveRecord::Base
     end
 
     def lock_choice(lat, long, location)
-    	self.update_attributes(:latitude => lat, :longitude => long, :location => location, :location_selected => true, :ordered => true)
+    	self.update_attributes(:location_lat => lat, :location_long => long, :location => location, :location_selected => true, :ordered => true)
     end
 
     def self.is_new(customer_cell_no)
