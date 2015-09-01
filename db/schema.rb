@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150830162932) do
+ActiveRecord::Schema.define(version: 20150901125953) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "city",         limit: 255
@@ -26,13 +26,27 @@ ActiveRecord::Schema.define(version: 20150830162932) do
   end
 
   create_table "cab_requests", force: :cascade do |t|
-    t.string   "location",        limit: 255
-    t.float    "location_lat",    limit: 24
-    t.float    "location_long",   limit: 24
-    t.string   "current_cell_no", limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "driver_id",       limit: 4
+    t.string   "location",            limit: 255
+    t.float    "location_lat",        limit: 24
+    t.float    "location_long",       limit: 24
+    t.string   "current_cell_no",     limit: 255
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "driver_id",           limit: 4
+    t.integer  "current_dirver_id",   limit: 4
+    t.string   "customer_cell_no",    limit: 255
+    t.boolean  "broadcast"
+    t.boolean  "status"
+    t.string   "chosen_drivers_ids",  limit: 255
+    t.text     "more_locations",      limit: 65535
+    t.boolean  "ordered"
+    t.boolean  "location_selected"
+    t.integer  "offer_count",         limit: 4
+    t.boolean  "broadcasted"
+    t.boolean  "deleted"
+    t.integer  "final_driver_id",     limit: 4
+    t.boolean  "closed"
+    t.integer  "more_location_count", limit: 4
   end
 
   create_table "car_types", force: :cascade do |t|
@@ -48,11 +62,14 @@ ActiveRecord::Schema.define(version: 20150830162932) do
   end
 
   create_table "driver_registration_requests", force: :cascade do |t|
-    t.string   "cell_no",    limit: 255
-    t.text     "location",   limit: 65535
+    t.string   "cell_no",             limit: 255
+    t.text     "location",            limit: 65535
     t.boolean  "active"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "more_location_count", limit: 4
+    t.string   "searched_location",   limit: 255
+    t.boolean  "deleted"
   end
 
   create_table "drivers", force: :cascade do |t|
@@ -138,6 +155,15 @@ ActiveRecord::Schema.define(version: 20150830162932) do
     t.text     "description", limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "send_sms", force: :cascade do |t|
+    t.string  "momt",     limit: 255
+    t.string  "sender",   limit: 255
+    t.string  "receiver", limit: 255
+    t.text    "msgdata",  limit: 65535
+    t.integer "sms_type", limit: 4
+    t.string  "smsc_id",  limit: 255
   end
 
   create_table "user_roles", force: :cascade do |t|
