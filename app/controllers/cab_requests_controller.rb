@@ -7,12 +7,12 @@ class CabRequestsController < ApplicationController
   def receive_sms
     cell_no     = params[:phone]
     inc_message = params[:message]
-    short_code  = params[:shortcode]
+    short_code  = params[:handle]
 
 
-    if(short_code == "+2518812")
+    if(short_code == "8812")
       receive_sms_for_driver_registration(cell_no, inc_message, "8812")
-    elsif(short_code == "+2518202")
+    elsif(short_code == "8202")
       receive_sms_for_ride(cell_no, inc_message, "8202")
     end
     puts "#{@cell_no} & #{@inc_message}"
