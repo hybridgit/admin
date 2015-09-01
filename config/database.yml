@@ -25,4 +25,4 @@ test:
 
 production:
   <<: *default
-  database: ride_backend_prod
+  database: Cab_service
