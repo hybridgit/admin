@@ -2,7 +2,7 @@ class CabRequest < ActiveRecord::Base
   belongs_to :driver
 
   def self.total_phone_numbers(start_date, end_date)
-    self.select("date(created_at) as date, count(DISTINCT current_cell_no) as value")
+    self.select("date(created_at) as date, count(DISTINCT customer_cell_no) as value")
         .where("created_at >= :start_date AND created_at <= :end_date",
                 {start_date: start_date, end_date: end_date})
         .group("date(created_at)")
@@ -10,7 +10,7 @@ class CabRequest < ActiveRecord::Base
   end
 
   def self.total_phone_numbers_count(start_date, end_date)
-    self.select("DISTINCT current_cell_no")
+    self.select("DISTINCT customer_cell_no")
         .where("created_at >= :start_date AND created_at <= :end_date",
                 {start_date: start_date, end_date: end_date})
         .count
@@ -31,7 +31,7 @@ class CabRequest < ActiveRecord::Base
   end
 
   def self.map_total_phone_numbers(start_date, end_date)
-    self.select("location, location_lat, location_long, count(DISTINCT current_cell_no) as value")
+    self.select("location, location_lat, location_long, count(DISTINCT customer_cell_no) as value")
         .where("created_at >= :start_date AND created_at <= :end_date",
                 {start_date: start_date, end_date: end_date})
         .group("location")
@@ -39,7 +39,7 @@ class CabRequest < ActiveRecord::Base
   end
 
   def self.map_total_phone_numbers_count(start_date, end_date)
-    @numbers = self.select("location, location_lat, location_long, count(DISTINCT current_cell_no) as value")
+    @numbers = self.select("location, location_lat, location_long, count(DISTINCT customer_cell_no) as value")
                    .where("created_at >= :start_date AND created_at <= :end_date",
                           {start_date: start_date, end_date: end_date})
                    .group("location")
