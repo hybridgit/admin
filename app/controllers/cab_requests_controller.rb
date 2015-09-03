@@ -3,7 +3,10 @@ class CabRequestsController < ApplicationController
   require 'json'
   API_BASE_URL = 'https://maps.googleapis.com/maps/api/geocode/json?address='
   APP_KEY= '&key=AIzaSyBe4SyPWoNw_RKyCMK5v_bCD5OE9kvlTGE'
-
+  NO_LOCATION_MESSAGE = "Sorry we couldn't match your location name. Check the spelling or try alternative names. No phrases. You can text Arat Kilo or Megenagna"
+  PRE_MESSAGE_OF_LOCATIONS_SUGGESTION = "Which one is it? SMS exact name or number"
+  POST_MESSAGE_OF_LOCATIONS_SUGGESTION = "Not listed? SMS back N"
+  SUCCESS_MESSAGE_ON_ARRANGEMENT = "Yay! Your Safe RIDE request is accepted by {driver_name}. Call him now and discuss your price and location. {driver_number}"
   def receive_sms
     cell_no     = params[:phone]
     inc_message = params[:message]
@@ -139,9 +142,6 @@ class CabRequestsController < ApplicationController
             #   send_more_locations_to_customer(@cab_request, @short_code) #send more options
             else # on rejection twice. delete the request and show "ask others" message
               send_more_locations_to_customer(@cab_request, @short_code) #send more options
-              # @message = "Please ask near by people the correct spelling to your location and send message again, Or try different name to the location"
-              # send_message(@cell_no, @message, @short_code)
-              # @cab_request.update_attributes(:deleted => true)
             end
 
           elsif (is_yes(@inc_message) && @cab_request.more_location_count == 0) #user agrees
@@ -176,7 +176,7 @@ class CabRequestsController < ApplicationController
             end
 
           else
-            @message = "Please ask near by people the correct spelling to your location and send message again, Or try different name to the location"
+            @message = NO_LOCATION_MESSAGE
             send_message(@cell_no, @message, @short_code)
             @cab_request.update_attributes(:closed => true, :deleted => true)
           end
@@ -191,7 +191,9 @@ class CabRequestsController < ApplicationController
             @message = "Here we go... Your customer lives near "+@cab_request.location.to_s+". You must call him/her in 2 mins. Customer phone number: "+@cab_request.customer_cell_no.to_s
             send_message(@driver.cell_no, @message, @short_code)
             #Send sms to customer
-            @message = "Congrats! Your Safe RIDE request is accepted by one of our registered drivers. You ca call him now and discuss your price and detail location @ "+@driver.cell_no.to_s
+            @message = SUCCESS_MESSAGE_ON_ARRANGEMENT
+            @message.replace("{driver_name}", "'"+@driver.name.split(" ").first+"'")
+            @message.replace("{driver_number}", @driver.cell_no.replace("+251", "0"))
             send_message(@cab_request.customer_cell_no, @message, @short_code)
             @cab_request.update_attributes(:status => true, :final_driver_id => @driver.id, :deleted => true)
           elsif (!present_in_broadcasted_drivers(@driver))
@@ -246,7 +248,7 @@ class CabRequestsController < ApplicationController
       more_location_count = (cab_request.more_location_count * 2)
 
       if(@results.count > (more_location_count+1))
-        @message  = "Please SMS back the correct number of your location\n"
+        @message  = PRE_MESSAGE_OF_LOCATIONS_SUGGESTION + \n"
         @session_message  = ""
         location_count = 1
         @results.each_with_index do |result, index|
@@ -254,16 +256,16 @@ class CabRequestsController < ApplicationController
             location = result['name']
             lat      = result['lat']
             long     = result['long']
-            @message += (location_count).to_s + "- " + location.to_s + "\n"
+            @message += (location_count).to_s + ")" + location.to_s + "\n"
             @session_message += location.to_s+","+lat.to_s+","+long.to_s+"-"
             location_count   += 1
           end
         end
         cab_request.update_attributes(:more_locations => @session_message.gsub( /.{1}$/, '' ) , :more_location_count => (cab_request.more_location_count + 1))
-        @message  += "If location not listed? SMS back N"
+        @message  += POST_MESSAGE_OF_LOCATIONS_SUGGESTION
         send_message(cab_request.customer_cell_no, @message, short_code) #Send Message
       else
-        @message = "Please ask near by people the correct spelling to your location and send message again, Or try different name to the location"
+        @message = NO_LOCATION_MESSAGE
         send_message(cab_request.customer_cell_no, @message, @short_code)
         cab_request.update_attributes(:closed => true, :deleted => true)
       end
@@ -277,7 +279,7 @@ class CabRequestsController < ApplicationController
     def lock_location_choice_for_ride(cab_request, choice, short_code)
       locations = cab_request.more_locations.split("-")
       if(choice.to_i > locations.count)
-        @message = "Please ask near by people the correct spelling to your location and send message again, Or try different name to the location"
+        @message = NO_LOCATION_MESSAGE
         send_message(cab_request.customer_cell_no, @message, short_code) # 0. Kick out request if driver send wrong option
         cab_request.update_attributes(:closed => true, :deleted => true)
       else
@@ -351,14 +353,14 @@ class CabRequestsController < ApplicationController
         end
 
         # Check if location not matchs with google correctly
-        @message  = "Please SMS back the correct number of your location\n"
+        @message  = PRE_MESSAGE_OF_LOCATIONS_SUGGESTION + \n"
         @session_message  = ""
         @results.each_with_index do |result, index|
           if(index < 2)
             location = result['name']
             lat      = result['lat']
             long     = result['long']
-            @message  += (index+1).to_s + "- " + location.to_s + "\n"
+            @message  += (index+1).to_s + ")" + location.to_s + "\n"
             @session_message += location.to_s+","+lat.to_s+","+long.to_s+"-"
           end
         end
@@ -366,7 +368,7 @@ class CabRequestsController < ApplicationController
         if(@results.count > 2)
           @message  += "Need more? SMS back M"
         else
-          @message  += "If location not listed? SMS back N"
+          @message  += POST_MESSAGE_OF_LOCATIONS_SUGGESTION
         end
 
         send_message(cell_no, @message, short_code) #Send Message
@@ -385,7 +387,7 @@ class CabRequestsController < ApplicationController
       more_location_count = (driver_reg_session.more_location_count * 2)
 
       if(@results.count > more_location_count)
-        @message  = "Please SMS back the correct number of your location \n"
+        @message  = PRE_MESSAGE_OF_LOCATIONS_SUGGESTION + \n"
         @session_message  = ""
         location_count = 1
         @results.each_with_index do |result, index|
@@ -393,7 +395,7 @@ class CabRequestsController < ApplicationController
             location = result['name']
             lat      = result['lat']
             long     = result['long']
-            @message  += (location_count).to_s + "- " + location.to_s + "\n"
+            @message  += (location_count).to_s + ")" + location.to_s + "\n"
             @session_message += location.to_s+","+lat.to_s+","+long.to_s+"-"
             location_count += 1
           end
@@ -402,7 +404,7 @@ class CabRequestsController < ApplicationController
         if(@results.count > (more_location_count + 2))
           @message  += "Need more? SMS back M"
         else
-          @message  += "If location not listed? SMS back N"
+          @message  += POST_MESSAGE_OF_LOCATIONS_SUGGESTION
         end
 
         send_message(driver_reg_session.cell_no, @message, short_code) #Send Message
@@ -433,10 +435,13 @@ class CabRequestsController < ApplicationController
 
       if @cab_request.present?
         #Sms to driver
-        @message = "Here we go... Your customer lives near "+@cab_request.location.to_s+". You must call him/her in 2 mins. Customer phone number: "+@cab_request.customer_cell_no.to_s
+        @message = "Here we go... Your customer lives near "+@cab_request.location.to_s+". You must call him/her in 2 mins. Customer phone number: "+@cab_request.customer_cell_no.replace("+251", "0")
         send_message(driver.cell_no, @message, @short_code)
         #Sms to customer
-        @message = "Congrats! Your Safe RIDE request is accepted by one of our registered drivers. You ca call him now and discuss your price and detail location @ "+driver.cell_no.to_s
+        @message = SUCCESS_MESSAGE_ON_ARRANGEMENT
+        @message.replace("{driver_name}", "'"+driver.name.split(" ").first+"'")
+        @message.replace("{driver_number}", driver.cell_no.replace("+251", "0"))
+
         send_message(@cab_request.customer_cell_no, @message, @short_code)
         @cab_request.update_attributes(:status => true, :final_driver_id => driver.id, :deleted => true)
         return true
