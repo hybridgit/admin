@@ -32,7 +32,6 @@ class LocationsController < ApplicationController
   # POST /locations
   # POST /locations.js
   def create
-    byebug
     @locations = Location.paginate(:page => params[:page], :per_page => 30).order('updated_at DESC')
     @location = Location.create(params[:location])
   end
@@ -79,7 +78,7 @@ class LocationsController < ApplicationController
     @locations = Location.paginate(:page => params[:page], :per_page => 30).order('updated_at DESC')
     @location = Location.find(params[:id])
     begin
-      @role.destroy
+      @location.destroy
     rescue ActiveRecord::DeleteRestrictionError => e
       @error = e.message
     end

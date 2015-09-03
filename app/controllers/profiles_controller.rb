@@ -77,7 +77,7 @@ class ProfilesController < ApplicationController
   end
 
   def delete
-    @profile = Profile.find(params[:Profile_id])
+    @profile = Profile.find(params[:profile_id])
   end
 
   def destroy
