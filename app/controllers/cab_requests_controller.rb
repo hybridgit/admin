@@ -248,7 +248,7 @@ class CabRequestsController < ApplicationController
       more_location_count = (cab_request.more_location_count * 2)
 
       if(@results.count > (more_location_count+1))
-        @message  = PRE_MESSAGE_OF_LOCATIONS_SUGGESTION + \n"
+        @message  = PRE_MESSAGE_OF_LOCATIONS_SUGGESTION + "\n"
         @session_message  = ""
         location_count = 1
         @results.each_with_index do |result, index|
@@ -353,7 +353,7 @@ class CabRequestsController < ApplicationController
         end
 
         # Check if location not matchs with google correctly
-        @message  = PRE_MESSAGE_OF_LOCATIONS_SUGGESTION + \n"
+        @message  = PRE_MESSAGE_OF_LOCATIONS_SUGGESTION + "\n"
         @session_message  = ""
         @results.each_with_index do |result, index|
           if(index < 2)
@@ -387,7 +387,7 @@ class CabRequestsController < ApplicationController
       more_location_count = (driver_reg_session.more_location_count * 2)
 
       if(@results.count > more_location_count)
-        @message  = PRE_MESSAGE_OF_LOCATIONS_SUGGESTION + \n"
+        @message  = PRE_MESSAGE_OF_LOCATIONS_SUGGESTION + "\n"
         @session_message  = ""
         location_count = 1
         @results.each_with_index do |result, index|
