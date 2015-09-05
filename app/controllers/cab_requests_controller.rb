@@ -188,7 +188,7 @@ class CabRequestsController < ApplicationController
           @cab_request  = CabRequest.where(:deleted => false, :current_driver_id => @driver.id, :status => false).last
           if @cab_request.present?
             #Send sms to driver
-            @message = "Here we go... Your customer lives near "+@cab_request.location.to_s+". You must call him/her in 2 mins. Customer phone number: "+@cab_request.customer_cell_no.replace("+251", "0").to_s
+            @message = "Here we go... Your customer lives near "+@cab_request.location.to_s+". You must call him/her in 2 mins. Customer phone number: "+@cab_request.customer_cell_no.replace("+251", "0")
             send_message(@driver.cell_no, @message, @short_code)
             #Send sms to customer
             @message = SUCCESS_MESSAGE_ON_ARRANGEMENT
@@ -436,7 +436,7 @@ class CabRequestsController < ApplicationController
 
       if @cab_request.present?
         #Sms to driver
-        @message = "Here we go... Your customer lives near "+@cab_request.location.to_s+". You must call him/her in 2 mins. Customer phone number: "+@cab_request.customer_cell_no.replace("+251", "0").to_s
+        @message = "Here we go... Your customer lives near "+@cab_request.location.to_s+". You must call him/her in 2 mins. Customer phone number: "+@cab_request.customer_cell_no.replace("+251", "0")
         send_message(driver.cell_no, @message, @short_code)
         #Sms to customer
         @message = SUCCESS_MESSAGE_ON_ARRANGEMENT
