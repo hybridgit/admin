@@ -192,7 +192,11 @@ class CabRequestsController < ApplicationController
             send_message(@driver.cell_no, @message, @short_code)
             #Send sms to customer
             @message = SUCCESS_MESSAGE_ON_ARRANGEMENT
-            @message.gsub!("{driver_name}", "'"+@driver.name.split(" ").first+"'")
+            driver_name = ""
+            if(@driver.name.present?)
+              driver_name = "'"+@driver.name.split(" ").first+"'"
+            end
+            @message.gsub!("{driver_name}", driver_name)
             @message.gsub!("{driver_number}", @driver.cell_no.gsub!("+251", "0"))
             send_message(@cab_request.customer_cell_no, @message, @short_code)
             @cab_request.update_attributes(:status => true, :final_driver_id => @driver.id, :deleted => true)
@@ -440,7 +444,11 @@ class CabRequestsController < ApplicationController
         send_message(driver.cell_no, @message, @short_code)
         #Sms to customer
         @message = SUCCESS_MESSAGE_ON_ARRANGEMENT
-        @message.gsub!("{driver_name}", "'"+driver.name.split(" ").first+"'")
+        driver_name = ""
+        if(@driver.name.present?)
+          driver_name = "'"+@driver.name.split(" ").first+"'"
+        end
+        @message.gsub!("{driver_name}", driver_name)
         @message.gsub!("{driver_number}", driver.cell_no.gsub!("+251", "0"))
 
         send_message(@cab_request.customer_cell_no, @message, @short_code)
