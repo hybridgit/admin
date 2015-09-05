@@ -56,7 +56,7 @@ gem "httparty"
 gem 'json', '~> 1.8.1'
 gem 'whenever', :require => false
 gem 'puma'
-gem 'geokit-rails'
+gem 'geokit-rails', github: 'geokit/geokit-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
