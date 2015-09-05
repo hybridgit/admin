@@ -188,12 +188,12 @@ class CabRequestsController < ApplicationController
           @cab_request  = CabRequest.where(:deleted => false, :current_driver_id => @driver.id, :status => false).last
           if @cab_request.present?
             #Send sms to driver
-            @message = "Here we go... Your customer lives near "+@cab_request.location.to_s+". You must call him/her in 2 mins. Customer phone number: "+@cab_request.customer_cell_no.gsub! "+251", "0"
+            @message = "Here we go... Your customer lives near "+@cab_request.location.to_s+". You must call him/her in 2 mins. Customer phone number: "+@cab_request.customer_cell_no.gsub!("+251", "0"))
             send_message(@driver.cell_no, @message, @short_code)
             #Send sms to customer
             @message = SUCCESS_MESSAGE_ON_ARRANGEMENT
-            @message.gsub! "{driver_name}", "'"+@driver.name.split(" ").first+"'"
-            @message.gsub! "{driver_number}", (@driver.cell_no.gsub! "+251", "0")
+            @message.gsub!("{driver_name}", "'"+@driver.name.split(" ").first+"'")
+            @message.gsub!("{driver_number}", @driver.cell_no.gsub!("+251", "0"))
             send_message(@cab_request.customer_cell_no, @message, @short_code)
             @cab_request.update_attributes(:status => true, :final_driver_id => @driver.id, :deleted => true)
           elsif (!present_in_broadcasted_drivers(@driver))
@@ -436,12 +436,12 @@ class CabRequestsController < ApplicationController
 
       if @cab_request.present?
         #Sms to driver
-        @message = "Here we go... Your customer lives near "+@cab_request.location.to_s+". You must call him/her in 2 mins. Customer phone number: "+@cab_request.customer_cell_no.gsub! "+251", "0"
+        @message = "Here we go... Your customer lives near "+@cab_request.location.to_s+". You must call him/her in 2 mins. Customer phone number: "+@cab_request.customer_cell_no.gsub!("+251", "0")
         send_message(driver.cell_no, @message, @short_code)
         #Sms to customer
         @message = SUCCESS_MESSAGE_ON_ARRANGEMENT
-        @message.gsub! "{driver_name}", "'"+@driver.name.split(" ").first+"'"
-        @message.gsub! "{driver_number}", (@driver.cell_no.gsub! "+251", "0")
+        @message.gsub!("{driver_name}", "'"+driver.name.split(" ").first+"'")
+        @message.gsub!("{driver_number}", driver.cell_no.gsub!("+251", "0"))
 
         send_message(@cab_request.customer_cell_no, @message, @short_code)
         @cab_request.update_attributes(:status => true, :final_driver_id => driver.id, :deleted => true)
