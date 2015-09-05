@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'materialize-sass', '~> 0.97.0'
 
 # MySQL library
-gem 'mysql2', '~> 0.3.19'
+gem 'mysql2'
 
 # For the attr_accessible method in models
 gem 'protected_attributes'
@@ -57,7 +57,7 @@ gem 'json', '~> 1.8.1'
 gem 'whenever', :require => false
 gem 'puma'
 gem 'geokit-rails', github: 'geokit/geokit-rails'
-
+gem 'geocoder'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
