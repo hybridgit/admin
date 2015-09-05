@@ -292,7 +292,7 @@ class CabRequestsController < ApplicationController
     end
 
     def contact_nearby_drivers(cab_request)
-      @drivers = Driver.within(1, :units => :miles, :origin => [cab_request.location_lat, cab_request.location_long])
+      @drivers = Driver.within(2, :units => :kms, :origin => [cab_request.location_lat, cab_request.location_long])
       #Testing
       # @drivers = Driver.where("cell_no IN ('+251929104455', '+251913135534', '+251938483821')")
       #Testing
