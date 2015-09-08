@@ -31,4 +31,16 @@ class Profile < ActiveRecord::Base
   def location_name
     return self.driver ? self.driver.location : "N/A"
   end
+
+  def car_type_name
+    return self.car_type ? self.car_type.name : "N/A"
+  end
+
+  def operation_hour_name
+    return self.operation_hour ? self.operation_hour.name : "N/A"
+  end
+
+  def contact_method_name
+    return self.contact_method ? self.contact_method.name : "N/A"
+  end
 end

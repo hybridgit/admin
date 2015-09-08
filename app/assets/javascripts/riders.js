@@ -321,7 +321,7 @@ drawMap = function(response){
 
     var circleScale = d3.scale.linear()
     .domain([min, max])
-    .range([5, 25]);
+    .range([10, 40]);
 
     $("#google-map-stats table tbody").html("");
 

@@ -10,10 +10,12 @@ class CabRequest < ActiveRecord::Base
   end
 
   def self.total_phone_numbers_count(start_date, end_date)
-    self.select("DISTINCT customer_cell_no")
-        .where("created_at >= :start_date AND created_at <= :end_date",
-                {start_date: start_date, end_date: end_date})
-        .count
+    @total_phone_numbers = self.total_phone_numbers(start_date, end_date)
+    @total_phone_numbers_count = 0
+    @total_phone_numbers.each do |count|
+      @total_phone_numbers_count += count.value
+    end
+    @total_phone_numbers_count
   end
 
   def self.total_sms_sent(start_date, end_date)
@@ -25,9 +27,12 @@ class CabRequest < ActiveRecord::Base
   end
 
   def self.total_sms_sent_count(start_date, end_date)
-    self.where("created_at >= :start_date AND created_at <= :end_date",
-                {start_date: start_date, end_date: end_date})
-        .count
+    @total_sms_sent = self.total_sms_sent(start_date, end_date)
+    @total_sms_sent_count = 0
+    @total_sms_sent.each do |count|
+      @total_sms_sent_count += count.value
+    end
+    @total_sms_sent_count
   end
 
   def self.map_total_phone_numbers(start_date, end_date)
